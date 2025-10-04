@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>𝕭𝖊𝖒 𝕲𝖆𝖓𝖌𝖘𝖙𝖊𝖗 - 𝕾𝖙𝖔𝖗𝖊 ™ </title>
+  <meta name="description" content="Loja Oficial @Evil produtos selecionados, entrega rápida e atendimento pelo WhatsApp.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="TESTEEEEEEEEEEEEEEEEEE">
+  <meta property="og:description" content="Produtos selecionados, entrega rápida e atendimento pelo WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Loja+Luzeterna">
+  <meta property="og:url" content="https://seu-dominio-ou-blogger-url">
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets\images\favcoin.jpg">
+
+  <style>
+    /* Card do formulário */
+.contato-card {
+  max-width: 600px;        
+  margin: 20px auto;        /* menos espaço externo */
+  padding: 30px;            /* mais espaço interno (fica mais "gordinho") */
+  border: 2px solid var(--brand);
+  border-radius: 15px;
+  background: rgba(20, 20, 20, 0.85);
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+  text-align: left;
+}
+
+/* Títulos e textos dentro do card */
+.contato-card h2,
+.contato-card p,
+.contato-card label {
+  margin: 8px 0;            /* reduzido (antes tinha 20px+) */
+  text-align: center;
+}
+
+/* Inputs e textarea */
+.contato-card input,
+.contato-card textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0 12px 0;     /* menos espaço entre os campos */
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  font-size: 1em;
+}
+
+.contato-card input:focus,
+.contato-card textarea:focus {
+  outline: none;
+  border: 1px solid cyan;
+  box-shadow: 0 0 10px rgba(0,255,255,0.5);
+}
+
+/* Botão enviar */
+.contato-card button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;          /* colado ao campo anterior */
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.05em;
+}
+
+    :root{
+      --bg:#0b0f14;        /* fundo profundo */
+      --card:#121923;      /* cartões */
+      --muted:#9bb0c3;     /* texto secundário */
+      --text:#eef6ff;      /* texto principal */
+      --brand:#6ae3ff;     /* ciano lunar */
+      --accent:#9b8cff;    /* lilás */
+      --ok:#20d68f;        /* botão ok */
+      --warn:#ffb020;      /* destaque */
+      --maxw: 1320px;      /* largura máxima (ótimo em 4K) */
+      --radius: 18px;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(80vw 80vh at 60% -10%, #1a2430 0%, #0b0f14 50%) fixed var(--bg); color:var(--text); font-family:Poppins, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;height:auto;border-radius:calc(var(--radius) - 6px)}
+    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
+    header.nav{position:sticky;top:0;backdrop-filter: blur(8px);background:rgba(11,15,20,.5);border-bottom:1px solid rgba(255,255,255,.07);z-index:30}
+    .nav .inner{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.2px}
+    .brand .dot{width:12px;height:12px;border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--accent)); box-shadow:0 0 24px var(--brand)}
+    .nav a.btn{padding:10px 16px;border:1px solid rgba(255,255,255,.12);border-radius:12px}
+    .btn-primary{background:linear-gradient(135deg,var(--brand),var(--accent)); color:#04131a; font-weight:700; border:none}
+    .hero{padding:72px 24px 36px}
+.hero .grid {
+  display: flex;
+  flex-direction: column;  /* coloca tudo em coluna */
+  justify-content: center; /* centraliza vertical */
+  align-items: center;     /* centraliza horizontal */
+  text-align: center;      /* centraliza o texto */
+  gap: 20px;               /* espaço entre os elementos */
+}
+    .hero h1{font-size:clamp(32px,3.8vw,64px); line-height:1.05; margin:0 0 14px}
+    .hero p{color:var(--muted);font-size:clamp(16px,1.1vw,20px)}
+.cta {
+  justify-content: center;
+}
+/* Centralização global */
+.wrap, .section, header, footer {
+  text-align: center;
+}
+
+.pulse-neon {
+  background: linear-gradient(135deg, #00f0ff, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  animation: pulseGlow 2.5s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% {
+    text-shadow: 0 0 6px #00f0ff, 0 0 12px #00f0ff, 0 0 18px #ffffff;
+  }
+  50% {
+    text-shadow: 0 0 10px #ffffff, 0 0 20px #00f0ff, 0 0 28px #00f0ff;
+  }
+  100% {
+    text-shadow: 0 0 8px #00f0ff, 0 0 16px #ffffff, 0 0 24px #00f0ff;
+  }
+}
+
+/* Ver Ofertas - Azul galáctico pulsante */
+.btn.hero-offers {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 12px rgba(0, 150, 255, 0.6), 0 0 24px rgba(0, 114, 255, 0.6);
+  animation: neonPulseBlue 2s infinite alternate;
+}
+
+/* Botão Detalhes pulsante */
+.details-btn {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,150,255,0.5), 0 0 20px rgba(0,114,255,0.5);
+  animation: neonPulseBlue 2s infinite alternate;
+  transition: transform 0.2s ease-in-out;
+}
+
+.details-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Reaproveita a mesma animação do "Ver ofertas" */
+@keyframes neonPulseBlue {
+  from {
+    box-shadow: 0 0 10px rgba(0,150,255,0.5), 0 0 20px rgba(0,114,255,0.5);
+  }
+  to {
+    box-shadow: 0 0 18px rgba(0,150,255,0.9), 0 0 36px rgba(0,114,255,0.9);
+  }
+}
+
+/* Ver Ofertas - Azul galáctico pulsante */
+.btn.hero-offers {
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 12px rgba(0, 150, 255, 0.6), 0 0 24px rgba(0, 114, 255, 0.6);
+  animation: neonPulseBlue 2s infinite alternate;
+  transition: transform 0.2s ease-in-out;
+}
+
+.btn.hero-offers:hover {
+  transform: scale(1.05);
+}
+
+/* Animação pulsante azul */
+@keyframes neonPulseBlue {
+  from {
+    box-shadow: 0 0 12px rgba(0,150,255,0.5), 0 0 24px rgba(0,114,255,0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(0,150,255,0.9), 0 0 40px rgba(0,114,255,0.9);
+  }
+}
+
+/* Atendimento Agora - Gradiente rosa/laranja neon pulsante */
+.btn.hero-att {
+  background: linear-gradient(135deg, #ff0080, #ff8c00);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 12px rgba(255, 0, 128, 0.6), 0 0 24px rgba(255, 140, 0, 0.6);
+  animation: neonPulse 2s infinite alternate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Pulsar azul */
+@keyframes neonPulseBlue {
+  from { box-shadow: 0 0 12px rgba(0,150,255,0.5), 0 0 24px rgba(0,114,255,0.5); }
+  to   { box-shadow: 0 0 20px rgba(0,150,255,0.9), 0 0 40px rgba(0,114,255,0.9); }
+}
+
+/* ----- Neon headings (use estas classes no HTML) ----- */
+.neon-title{
+  display:block;
+  text-align:center;
+  font-weight:800;
+  letter-spacing:1px;
+  font-size: clamp(28px, 4.2vw, 56px);
+  line-height:1.02;
+  margin: 0 0 8px;
+  background: linear-gradient(135deg, var(--brand), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  -webkit-font-smoothing:antialiased;
+  /* brilho suave */
+  text-shadow:
+    0 6px 24px rgba(59,209,255,0.08),
+    0 0 30px rgba(181,107,255,0.08);
+  /* garante prioridade caso exista regra .section h2 */
+  box-decoration-break: clone;
+}
+
+/* subtítulo neon menor */
+.neon-sub{
+  display:block;
+  text-align:center;
+  font-size: clamp(14px, 1.6vw, 18px);
+  margin: 6px 0 22px;
+  background: linear-gradient(135deg, rgba(59,209,255,0.95), rgba(181,107,255,0.95));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent !important;
+  color: transparent !important;
+  opacity:0.98;
+  text-shadow: 0 4px 18px rgba(59,209,255,0.06);
+}
+
+/* fallback simples para navegadores que não suportam background-clip */
+@supports(not ((-webkit-background-clip: text) or (background-clip: text))) {
+  .neon-title, .neon-sub { color: var(--brand); background:none; -webkit-text-fill-color:initial; }
+}
+
+/* centraliza o bloco (caso precise) */
+.section .wrap { text-align: center; }
+/* evita sobrescrita por regras mais fortes: */
+.section .wrap .neon-title, .section .wrap .neon-sub { margin-left:auto; margin-right:auto; }
+
+/* Botão Comprar - Neon gradiente pulsante */
+.btn.neon-buy {
+  background: linear-gradient(135deg, #ff0080, #ff8c00);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  box-shadow: 0 0 12px rgba(255, 0, 128, 0.6), 0 0 24px rgba(255, 140, 0, 0.6);
+  animation: neonPulse 2s infinite alternate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Botão Detalhes - apenas pulsante */
+.btn.neon-details {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, .25);
+  color: #fff;
+  font-weight: 600;
+  animation: neonPulseSoft 2s infinite alternate;
+}
+
+/* Pulsar forte (para Comprar) */
+@keyframes neonPulse {
+  from { box-shadow: 0 0 12px rgba(255,0,128,0.5), 0 0 24px rgba(255,140,0,0.5); }
+  to   { box-shadow: 0 0 20px rgba(255,0,128,0.9), 0 0 40px rgba(255,140,0,0.9); }
+}
+
+/* Pulsar suave (para Detalhes) */
+@keyframes neonPulseSoft {
+  from { box-shadow: 0 0 6px rgba(255,255,255,0.2); }
+  to   { box-shadow: 0 0 14px rgba(255,255,255,0.6); }
+}
+
+/* WhatsApp flutuante neon */
+.whats {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.whats a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366; /* cor WhatsApp */
+  color: #04131a;
+  font-weight: 800;
+  padding: 14px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 0 15px #25D366, 0 0 30px #25D366; /* neon */
+  animation: pulseNeon 2s infinite;
+  transition: transform 0.2s ease-in-out;
+}
+
+.whats a:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #25D366, 0 0 40px #25D366;
+}
+
+/* Animação de pulsar neon */
+@keyframes pulseNeon {
+  0% {
+    box-shadow: 0 0 15px #25D366, 0 0 30px #25D366;
+  }
+  50% {
+    box-shadow: 0 0 25px #25D366, 0 0 60px #25D366;
+  }
+  100% {
+    box-shadow: 0 0 15px #25D366, 0 0 30px #25D366;
+  }
+}
+
+/* Ajusta títulos e subtítulos */
+h1, h2, h3, p.sub {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Centraliza grids */
+.grid3, .grid4, .plans, .faq, .products-grid, .category-grid, .comments-grid {
+  justify-content: center;
+  text-align: center;
+}
+
+/* Cards e produtos */
+.card, .product, .plan, .testi, .faq details {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Card Fale com a gente */
+#contato .card {
+  max-width: 700px;   /* deixa o card mais estreito */
+  margin: 0 auto;     /* centraliza */
+  text-align: center; /* centraliza textos */
+}
+
+/* Centralizar botões e email */
+#contato .row {
+  justify-content: center; /* centraliza no meio */
+  gap: 16px;               /* espaço entre os itens */
+  flex-wrap: wrap;         /* quebra para baixo no celular */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 1024px) {
+  .grid3 { grid-template-columns: 1fr 1fr; }
+  .grid4 { grid-template-columns: 1fr 1fr; }
+  .plans { grid-template-columns: 1fr; }
+  .faq { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .wrap { padding: 16px; }
+  .grid3, .grid4, .plans, .faq { grid-template-columns: 1fr; }
+}
+
+
+  /* Centralizar títulos da seção produtos */
+  #produtos h2,
+  #produtos .sub {
+    text-align: center;
+  }
+    .card{background:linear-gradient(180deg, rgba(18,25,35,.9), rgba(8,12,18,.9)); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); box-shadow:var(--shadow)}
+    .glass{backdrop-filter: blur(10px)}
+    .pill{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:999px;color:var(--muted);font-size:14px}
+    .section{padding:42px 24px}
+    .section h2{font-size:clamp(24px,2.2vw,38px);margin:0 0 10px}
+    .sub{color:var(--muted);margin:0 0 20px}
+    .grid3{display:grid;grid-template-columns: repeat(3, 1fr); gap:24px}
+    .grid4{display:grid;grid-template-columns: repeat(4, 1fr); gap:20px}
+.product {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px;
+  align-items: center;    /* Centraliza todos os elementos */
+  text-align: center;     /* Centraliza textos */
+}
+    .price{display:flex;align-items:baseline;gap:8px}
+    .price .now{font-weight:800;font-size:22px;color:var(--brand)}
+    .price .old{text-decoration:line-through;color:rgba(255,255,255,.45)}
+    .badge{display:inline-block;font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(106,227,255,.12);border:1px solid rgba(106,227,255,.35);color:var(--brand)}
+.actions {
+  display: flex;
+  flex-direction: column; /* Botões em coluna */
+  gap: 10px;
+  width: 100%;            /* pra ocupar o espaço do card */
+  align-items: center;    /* Centraliza os botões */
+}
+    .btn{padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.12);font-weight:600}
+    .btn.ok{background:linear-gradient(135deg,var(--ok),#0fe3b5); color:#04131a;border:none}
+    .btn.ghost{background:transparent}
+    .row{display:flex;gap:16px;flex-wrap:wrap}
+/* Centralizar conteúdo dos cards de clientes */
+.testi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* Centraliza na horizontal */
+  justify-content: center; /* Centraliza na vertical */
+  text-align: center;   /* Texto centralizado */
+}
+
+.testi .row {
+  display: flex;
+  flex-direction: column; /* Empilha imagem + nome */
+  align-items: center;    /* Centraliza no meio */
+  gap: 8px;
+}
+    .avatar{width:44px;height:44px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.2)}
+    .plans{display:grid;grid-template-columns: repeat(3, 1fr); gap:20px}
+    .plan{padding:18px;display:flex;flex-direction:column;gap:12px}
+    .plan h3{margin:0;font-size:22px}
+    .plan ul{margin:0;padding-left:18px;color:var(--muted)}
+    .faq{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    details{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:14px}
+    summary{cursor:pointer;font-weight:600}
+    footer{padding:26px 24px;color:#b8c7d6;border-top:1px solid rgba(255,255,255,.08);background:rgba(6,8,12,.8)}
+    .whats{position:fixed;right:20px;bottom:20px;z-index:50}
+    .whats a{display:flex;align-items:center;gap:10px;background:#25D366;color:#04131a;padding:12px 16px;border-radius:999px;font-weight:800;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .label{font-size:12px;color:var(--muted)}
+    /* Responsivo */
+    @media (max-width: 1024px){
+      .hero .grid{grid-template-columns:1fr}
+      .grid3{grid-template-columns:1fr 1fr}
+      .grid4{grid-template-columns:1fr 1fr}
+      .plans{grid-template-columns:1fr}
+      .faq{grid-template-columns:1fr}
+    }
+    @media (max-width: 560px){
+      .wrap{padding:18px}
+    }
+  </style>
+  </style>
+  <!-- Schema.org ProductList -->
+  <script type="application/ld+json">
+  </script>
+</head>
+<body>
+<!-- NAV -->
+<header class="nav">
+    <div class="brand">
+      <span class="dot"></span>
+      <span>ʟᴏᴊᴀ <strong>ɪɴᴛᴇɢʀᴀᴅᴀ ™ </strong></span>
+    </div>
+
+<!-- MENU TRANSPARENTE E MODERNO -->
+<header>
+  <nav id="menu">
+    <a href="https://www.instagram.com/nthorxz/" class="btn">ᴘʀᴏᴅᴜᴛᴏꜱ</a>
+
+        <a href="#faq"class="btn">ᴘʟᴀɴᴏꜱ</a>
+    <a href="http://127.0.0.1:5500/investcrypto.html" class="btn">ɪɴᴠᴇꜱᴛɪᴍᴇɴᴛᴏꜱ</a>
+    <a href="http://127.0.0.1:5500/weather.html" class="btn">ᴘʀᴇᴠɪꜱᴀᴏ ᴅᴏ ᴛᴇᴍᴘᴏ</a>
+    <a href="http://127.0.0.1:5500/voostest.html" class="btn">ᴠᴏᴏꜱ ᴄᴀɴᴄᴇʟᴀᴅᴏꜱ</a>
+    <a href="https://api.whatsapp.com/send/?phone=5581993523392&text=Ol%C3%A1%2C+quero+comprar+na+Loja+Luzeterna&type=phone_number&app_absent=0" class="btn btn-primary">ᴡʜᴀᴛꜱᴀᴘᴘ ᴏꜰɪᴄɪᴀʟ</a>
+  </nav>
+</header>
+
+<style>
+  /* Ajusta apenas o espaço entre PRODUTOS e PLANOS */
+#produtos {
+  margin-bottom: 20px; /* nem tão colado, nem tão longe */
+}
+
+#planos {
+  margin-top: 10px; /* espaço leve acima da seção */
+}
+#produtos {
+  margin-bottom: 8px; /* mínimo espaço abaixo da seção de produtos */
+}
+
+#planos {
+  margin-top: 8px; /* mínimo espaço acima da seção de planos */
+}
+
+  /* Reduz espaço entre avaliação e produtos */
+.row {
+  margin-top: 0 !important; /* remove margem extra acima */
+  margin-bottom: 5px !important; /* diminui espaço abaixo */
+}
+
+#produtos h2.pulse-neon {
+  margin-top: 5px; /* aproxima do conteúdo anterior */
+}
+
+#produtos p.sub {
+  margin-top: 3px; /* aproxima do título */
+  margin-bottom: 5px; /* diminui espaço abaixo do parágrafo */
+}
+
+/* Ajuste geral das seções se necessário */
+.section {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* Reduz espaço entre avaliação e produtos */
+.row {
+  margin-top: 0 !important; /* remove margem extra acima */
+  margin-bottom: 5px !important; /* diminui espaço abaixo */
+}
+
+#produtos h2.pulse-neon {
+  margin-top: 5px; /* aproxima do conteúdo anterior */
+}
+
+#produtos p.sub {
+  margin-top: 3px; /* aproxima do título */
+  margin-bottom: 5px; /* diminui espaço abaixo do parágrafo */
+}
+
+/* Ajuste geral das seções se necessário */
+.section {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* FORÇAR TUDO MAIS PRÓXIMO */
+section, .wrap, .row, figure, div, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Ajuste específico para avaliação + produtos */
+#produtos {
+  margin-top: 2px; /* praticamente grudado */
+  padding-top: 2px;
+}
+
+#produtos h2.pulse-neon {
+  margin: 2px 0;
+}
+
+#produtos p.sub {
+  margin: 1px 0 3px 0;
+}
+
+#produtos figure.card.testi,
+#produtos div.card.plan {
+  margin-top: 2px;
+  margin-bottom: 2px;
+  padding: 2px;
+}
+
+/* MENU TRANSPARENTE ULTRA */
+#menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  padding: 15px 0;
+  background: rgba(30,30,30,0.05); /* quase transparente */
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px); /* efeito vidro fosco */
+}
+
+#menu .btn {
+  padding: 10px 22px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255,255,255,0.05); /* botão quase transparente */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+  font-weight: bold;
+  text-transform: uppercase;
+  backdrop-filter: blur(5px);
+}
+
+#menu .btn:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+}
+
+#menu .btn-primary {
+  background: rgba(0,255,128,0.9); /* verde neon RGB */
+  color: #fff;
+  text-shadow: 0 0 8px rgb(0,255,128), 0 0 15px rgb(0,255,128);
+}
+
+#menu .btn-primary:hover {
+  background: rgba(0,255,128,1);
+  box-shadow: 0 0 12px rgb(0,255,128), 0 0 20px rgb(0,255,128);
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVO */
+@media(max-width:600px){
+  #menu { flex-direction: column; gap:8px; }
+  #menu .btn { width: 90%; text-align:center; }
+}
+</style>
+
+<script>
+// Script para abrir/fechar menu (hamburguer)
+document.getElementById("menu-toggle")?.addEventListener("click", function() {
+  document.getElementById("menu").classList.toggle("show");
+});
+</script>
+
+</style>
+
+<script>
+// Script para abrir/fechar menu
+document.getElementById("menu-toggle").addEventListener("click", function() {
+  document.getElementById("menu").classList.toggle("show");
+});
+</script>
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <span class="pill"> 📦 ꜰʀᴇᴛᴇ ɢʀáᴛɪꜱ ɴᴀꜱ ᴄᴏᴍᴘʀᴀꜱ ᴀᴄɪᴍᴀ ᴅᴇ ʀ$𝟣𝟫𝟫 📦</span> 
+        <h1>ᴘʀᴏᴅᴜᴛᴏꜱ <span style="background:linear-gradient(135deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">ᴏʀɪɢɪɴᴀɪꜱ</span> ᴇ ᴀᴛᴇɴᴅɪᴍᴇɴᴛᴏ <span style="background:linear-gradient(135deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent">𝟤𝟦ʜ</span></h1>
+<p style="margin-bottom: 20px;">ᴏ ᴇꜱᴛɪʟᴏᴢᴏ ᴄᴏᴍ ᴇꜱᴛᴇᴛɪᴄᴀ ꜰʟᴏʀᴇꜱᴄᴇ ɴᴀ ᴇꜱᴄᴜʀɪᴅᴀᴏ, ᴇʟᴇɢᴀɴᴄɪᴀ ꜱᴏᴍʙʀɪᴀ ᴇᴛᴇʀɴᴀᴍᴇɴᴛᴇ ꜱᴜᴀ.</p>
+
+<div class="hero-actions">
+  <a href="https://www.mercadolivre.com/jms/mlb/lgz/login?platform_id=ML&go=https%3A%2F%2Fwww.mercadolivre.com.br%2Fminha-pagina%2Fresumo%3Ffrom%3Dmenu_mkt&loginType=explicit#from=menu_mkt" class="btn hero-att" style="margin-top:15px;">ᴘʀᴏᴍᴏçᴏᴇꜱ ᴅᴇ ɪɴᴀᴜɢᴜʀᴀçᴀᴏ 🛒</a>
+</div>
+
+  <!-- PRODUTOS -->
+<section id="produtos" class="section">
+  <div class="wrap tight-space">
+    <div class="row rating">
+      <span class="label">⭐️⭐️⭐️⭐️⭐️ 𝟦.𝟫/𝟧 (𝟣.𝟤𝟢𝟢+ ᴀᴠᴀʟɪᴀçõᴇꜱ)</span>
+    </div>
+</div>
+    <h2 class="pulse-neon">ᴏꜰᴇʀᴛᴀꜱ ᴇᴍ ᴅᴇꜱᴛᴀǫᴜᴇ</h2>
+    <p class="sub pulse-neon">"ᴇʟᴇɢâɴᴄɪᴀ ᴍᴏᴅᴇʀɴᴀ, ᴇꜱᴛɪʟᴏ ꜱᴇᴍ ꜰʀᴏɴᴛᴇɪʀᴀꜱ."✨</p>
+
+    <figure class="card testi">
+      <div class="card plan" style="border:2px solid var(--brand)">
+        <div class="grid4">
+        <!-- Card Produto 1 -->
+        <article class="card product">
+                          <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <img loading="lazy" src="assets\images\img1.jpg" alt="LunarBox">
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <strong>Caixa de Som LunarBox</strong>
+            <span class="badge">Novo</span>
+          </div>
+          <p class="label">Som 360°, à prova d’água IPX7</p>
+          <div class="price">
+            <span class="now">R$ 149,90</span>
+            <span class="old">R$ 189,90</span>
+          </div>
+<div class="actions">
+  <a class="btn neon-buy" href="https://wa.me/5581993523392?text=Olá,%20quero%20comprar%20na%20Loja">
+    🛒 Comprar no WhatsApp
+  </a>
+<a class="btn btn-hero details-btn" href="#detalhes">Detalhes</a>
+</div>
+
+        </article>
+        <!-- Card Produto 2 -->
+         <article class="card product">
+                          <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <img loading="lazy" src="assets\images\img1.jpg" alt="LunarBox">
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <strong>Caixa de Som LunarBox</strong>
+            <span class="badge">Novo</span>
+          </div>
+          <p class="label">Som 360°, à prova d’água IPX7</p>
+          <div class="price">
+            <span class="now">R$ 149,90</span>
+            <span class="old">R$ 189,90</span>
+          </div>
+<div class="actions">
+  <a class="btn neon-buy" href="https://wa.me/5581993523392?text=Olá,%20quero%20comprar%20na%20Loja">
+    🛒 Comprar no WhatsApp
+  </a>
+<a class="btn btn-hero details-btn" href="#detalhes">Detalhes</a>
+</div>
+
+        </article>
+        <!-- Card Produto 3 -->
+        <article class="card product">
+                          <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <img loading="lazy" src="assets\images\img1.jpg" alt="LunarBox">
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <strong>Caixa de Som LunarBox</strong>
+            <span class="badge">Novo</span>
+          </div>
+          <p class="label">Som 360°, à prova d’água IPX7</p>
+          <div class="price">
+            <span class="now">R$ 149,90</span>
+            <span class="old">R$ 189,90</span>
+          </div>
+<div class="actions">
+  <a class="btn neon-buy" href="https://wa.me/5581993523392?text=Olá,%20quero%20comprar%20na%20Loja">
+    🛒 Comprar no WhatsApp
+  </a>
+<a class="btn btn-hero details-btn" href="#detalhes">Detalhes</a>
+</div>
+
+        </article>
+        <!-- Card Produto 4 -->
+         <article class="card product">
+                          <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <img loading="lazy" src="assets\images\img1.jpg" alt="LunarBox">
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <strong>Caixa de Som LunarBox</strong>
+            <span class="badge">Novo</span>
+          </div>
+          <p class="label">Som 360°, à prova d’água IPX7</p>
+          <div class="price">
+            <span class="now">R$ 149,90</span>
+            <span class="old">R$ 189,90</span>
+          </div>
+<div class="actions">
+  <a class="btn neon-buy" href="https://wa.me/5581993523392?text=Olá,%20quero%20comprar%20na%20Loja">
+    🛒 Comprar no WhatsApp
+  </a>
+<a class="btn btn-hero details-btn" href="#detalhes">Detalhes</a>
+</div>
+
+        </article>
+                <!-- Card Produto 5 -->
+        <article class="card product">
+                          <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <img loading="lazy" src="assets\images\img1.jpg" alt="LunarBox">
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <strong>Caixa de Som LunarBox</strong>
+            <span class="badge">Novo</span>
+          </div>
+          <p class="label">Som 360°, à prova d’água IPX7</p>
+          <div class="price">
+            <span class="now">R$ 149,90</span>
+            <span class="old">R$ 189,90</span>
+          </div>
+<div class="actions">
+  <a class="btn neon-buy" href="https://wa.me/5581993523392?text=Olá,%20quero%20comprar%20na%20Loja">
+    🛒 Comprar no WhatsApp
+  </a>
+<a class="btn btn-hero details-btn" href="#detalhes">Detalhes</a>
+</div>
+
+        </article>
+                <!-- Card Produto 6 -->
+        <article class="card product">
+                          <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <img loading="lazy" src="assets\images\img1.jpg" alt="LunarBox">
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <strong>Caixa de Som LunarBox</strong>
+            <span class="badge">Novo</span>
+          </div>
+          <p class="label">Som 360°, à prova d’água IPX7</p>
+          <div class="price">
+            <span class="now">R$ 149,90</span>
+            <span class="old">R$ 189,90</span>
+          </div>
+<div class="actions">
+  <a class="btn neon-buy" href="https://wa.me/5581993523392?text=Olá,%20quero%20comprar%20na%20Loja">
+    🛒 Comprar no WhatsApp
+  </a>
+<a class="btn btn-hero details-btn" href="#detalhes">Detalhes</a>
+</div>
+
+        </article>
+                <!-- Card Produto 7 -->
+        <article class="card product">
+                          <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <img loading="lazy" src="assets\images\img1.jpg" alt="LunarBox">
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <strong>Caixa de Som LunarBox</strong>
+            <span class="badge">Novo</span>
+          </div>
+          <p class="label">Som 360°, à prova d’água IPX7</p>
+          <div class="price">
+            <span class="now">R$ 149,90</span>
+            <span class="old">R$ 189,90</span>
+          </div>
+<div class="actions">
+  <a class="btn neon-buy" href="https://wa.me/5581993523392?text=Olá,%20quero%20comprar%20na%20Loja">
+    🛒 Comprar no WhatsApp
+  </a>
+<a class="btn btn-hero details-btn" href="#detalhes">Detalhes</a>
+</div>
+
+        </article>
+                <!-- Card Produto 8 -->
+        <article class="card product">
+                          <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <img loading="lazy" src="assets\images\img1.jpg" alt="LunarBox">
+          <div class="row" style="justify-content:space-between;align-items:center">
+            <strong>Caixa de Som LunarBox</strong>
+            <span class="badge">Novo</span>
+          </div>
+          <p class="label">Som 360°, à prova d’água IPX7</p>
+          <div class="price">
+            <span class="now">R$ 149,90</span>
+            <span class="old">R$ 189,90</span>
+          </div>
+<div class="actions">
+  <a class="btn neon-buy" href="https://wa.me/5581993523392?text=Olá,%20quero%20comprar%20na%20Loja">
+    🛒 Comprar no WhatsApp
+  </a>
+<a class="btn btn-hero details-btn" href="#detalhes">Detalhes</a>
+</div>
+
+        </article>
+      </div>
+    </div>
+  </section>
+  <!-- PLANOS -->
+<section id="planos" class="section">
+  <div class="card-wrap" style="text-align:center">
+<h2 class="pulse-neon">ɴᴏꜱꜱᴏꜱ ᴘʟᴀɴᴏꜱ</h2>
+<p class="sub pulse-neon">ᴇꜱᴄᴏʟʜᴀ ᴄᴏᴍᴏ ǫᴜᴇʀ ᴄᴏᴍᴘʀᴀʀ.</p>
+      <div class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <h3>Avista</h3>
+          <div class="price"><span class="now">até 12x</span></div>
+          <ul>
+            <li>Sem juros em produtos selecionados</li>
+            <li>Garantia estendida</li>
+            <li>Troca fácil</li>
+          </ul>
+          <a href="#contato" class="btn ok">Assinar</a>
+        </div>
+                 <div class="card plan" style="border:2px solid var(--brand)">
+          <h3>Pix no Credito</h3>
+          <div class="price"><span class="now">até 12x</span></div>
+          <ul>
+            <li>Sem juros em produtos selecionados</li>
+            <li>Garantia estendida</li>
+            <li>Troca fácil</li>
+          </ul>
+          <a href="#contato" class="btn ok">Assinar</a>
+        </div>
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <h3>Cartão</h3>
+          <div class="price"><span class="now">até 12x</span></div>
+          <ul>
+            <li>Sem juros em produtos selecionados</li>
+            <li>Garantia estendida</li>
+            <li>Troca fácil</li>
+          </ul>
+          <a href="#contato" class="btn ok">Assinar</a>
+  </section>
+
+<!-- TESTEMUNHOS -->
+<section id="clientes" class="section">
+  <div class="card-wrap" style="text-align:center">
+  <h2 class="pulse-neon">ᴏ ǫᴜᴇ ᴅɪᴢᴇᴍ ɴᴏꜱꜱᴏꜱ ᴄʟɪᴇɴᴛᴇꜱ</h2>
+<p class="sub pulse-neon">ᴀᴛᴇɴᴅɪᴍᴇɴᴛᴏ ᴘʀóxɪᴍᴏ ᴇ ᴇɴᴛʀᴇɢᴀ ʀáᴘɪᴅᴀ!</p>
+  
+      <div class="grid3">
+                <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <div class="row"><img class="avatar" src="/images/images.jpg" alt=""><strong>@andersonneiff</strong></div>
+          <figcaption>“Chegou em 2 dias e o suporte pelo WhatsApp foi perfeito.”</figcaption>
+        </figure>
+        
+                <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <div class="row"><img class="avatar" src="/images/37264203eb15f335e7d88796b59a1df7.jpg" alt=""><strong>Aline Medeiros</strong></div>
+          <figcaption>“Produto original e bem embalado. Recomendo muito.”</figcaption>
+        </figure>
+                <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <div class="row"><img class="avatar" src="/images/th.jpg" alt=""><strong>Rafael Sant'ana</strong></div>
+          <figcaption>“Super recomendo, nunca vi algo assim online! ⚡”</figcaption>
+        </figure>
+                <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <div class="row"><img class="avatar" src="/images/julieta-rodriguez_0016.jpg" alt=""><strong>Clara Soares</strong></div>
+          <figcaption>“Conteúdo muito bem organizado, volto sempre! 🔥”</figcaption>
+        </figure>
+                <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <div class="row"><img class="avatar" src="/images/g_-294rj_400x400.jpg" alt=""><strong>Danny Myller</strong></div>
+          <figcaption>“Simplesmente incrível, adorei cada detalhe do site! 🖤”</figcaption>
+        </figure>
+                <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <div class="row"><img class="avatar" src="/images/1694739019205.jpg" alt=""><strong>Dannel Altheam</strong></div>
+          <figcaption>“Muito bom! Fácil de navegar e tudo funciona perfeito 💎”</figcaption>
+        </figure>
+                        <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <div class="row"><img class="avatar" src="/images/GWDcHBlWcAEmTh8.jpg" alt=""><strong>Baby Rosaa</strong></div>
+          <figcaption>“Adorei os vídeos e músicas, perfeito para passar o tempo 😎”</figcaption>
+        </figure>
+                        <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <div class="row"><img class="avatar" src="/images/17516717.jpg" alt=""><strong>Murillo Couto</strong></div>
+          <figcaption>“Design top, tudo carregou rápido e sem problemas ✨”</figcaption>
+        </figure>
+                        <figure class="card testi"> <class="plans">
+        <div class="card plan" style="border:2px solid var(--brand)">
+          <div class="row"><img class="avatar" src="/images/Perfil.png" alt=""><strong>Mike Rodrigues</strong></div>
+          <figcaption>“Preço honesto e atendimento humano de verdade.”</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+  
+
+<!-- CONTATO -->
+  <section id="contato" class="section">
+           <div class="card plan" style="border:2px solid var(--brand)">
+    <h2 class="pulse-neon" style="text-align:center">ꜰᴀʟᴇ ᴄᴏᴍ ᴀ ɢᴇɴᴛᴇ</h2>
+    <p class="sub pulse-neon" style="text-align:center">ᴇꜱᴛᴀᴍᴏꜱ ᴘʀᴏɴᴛᴏꜱ ᴘᴀʀᴀ ᴛᴇ ᴀᴛᴇɴᴅᴇʀ 💬</p>
+
+    <div class="card contato-card">
+      <form>
+        <label for="nome">ɴᴏᴍᴇ</label>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome">
+
+        <label for="email">ᴇ-ᴍᴀɪʟ</label>
+        <input type="email" id="email" name="email" placeholder="Seu e-mail">
+
+        <label for="mensagem">ᴍᴇɴꜱꜱᴀɢᴇᴍ</label>
+        <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem..."></textarea>
+        <button type="submit" class="btn ok">Enviar</button>
+      </form>
+</section>
+<style>
+/* Card do formulário */
+.contato-card {
+  max-width: 600px;        /* mais largo */
+  margin: 30px auto;       /* centraliza */
+  padding: 25px;
+  border: 2px solid var(--brand);
+  border-radius: 15px;
+  background: rgba(20, 20, 20, 0.8);
+  box-shadow: 0 0 20px rgba(0,255,255,0.2);
+  text-align: left;
+}
+
+/* Inputs e textarea */
+.contato-card input,
+.contato-card textarea {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0 18px 0;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.05);
+  color: #fff;
+  font-size: 1em;
+}
+
+.contato-card input:focus,
+.contato-card textarea:focus {
+  outline: none;
+  border: 1px solid cyan;
+  box-shadow: 0 0 10px rgba(0,255,255,0.5);
+}
+
+/* Botão enviar */
+.contato-card button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1em;
+}
+/* Card do formulário */
+.contato-card {
+  max-width: 600px;        
+  margin: 20px auto;        /* menos espaço externo */
+  padding: 30px;            /* mais espaço interno (fica mais "gordinho") */
+  border: 2px solid var(--brand);
+  border-radius: 15px;
+  background: rgba(20, 20, 20, 0.85);
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+  text-align: left;
+}
+
+/* Títulos e textos dentro do card */
+.contato-card h2,
+.contato-card p,
+.contato-card label {
+  margin: 8px 0;            /* reduzido (antes tinha 20px+) */
+  text-align: center;
+}
+
+/* Inputs e textarea */
+.contato-card input,
+.contato-card textarea {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0 12px 0;     /* menos espaço entre os campos */
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,.3);
+  background: rgba(255,255,255,.06);
+  color: #fff;
+  font-size: 1em;
+}
+
+.contato-card input:focus,
+.contato-card textarea:focus {
+  outline: none;
+  border: 1px solid cyan;
+  box-shadow: 0 0 10px rgba(0,255,255,0.5);
+}
+
+/* Botão enviar */
+.contato-card button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;          /* colado ao campo anterior */
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1.05em;
+}
+/* Card do formulário */
+.contato-card {
+  max-width: 650px;        
+  margin: 10px auto;        /* mínimo espaço externo */
+  padding: 20px;            /* espaço interno equilibrado */
+  border: 2px solid var(--brand);
+  border-radius: 15px;
+  background: rgba(20, 20, 20, 0.9);
+  box-shadow: 0 0 15px rgba(0,255,255,0.25);
+  text-align: center;       /* centraliza tudo */
+}
+
+/* Títulos e textos */
+.contato-card h2,
+.contato-card p,
+.contato-card label {
+  margin: 4px 0;           /* quase nada de espaço */
+  line-height: 1.2em;      /* deixa o texto mais próximo */
+}
+
+/* Inputs e textarea */
+.contato-card input,
+.contato-card textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;           /* campos bem próximos */
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 0.95em;
+}
+
+.contato-card input:focus,
+.contato-card textarea:focus {
+  outline: none;
+  border: 1px solid cyan;
+  box-shadow: 0 0 6px rgba(0,255,255,0.4);
+}
+
+/* Botão enviar */
+.contato-card button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;         /* bem colado ao campo anterior */
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+</style>
+</section>
+
+  <!-- CONTATO -->
+  <section id="contato" class="section">
+           <div class="card plan" style="border:2px solid var(--brand)">
+<h2 class="pulse-neon">ᴠᴀɪ ꜰɪᴄᴀʀ ᴅᴇ ꜰᴏʀᴀ? ᴇɴᴛʀᴇ ᴇᴍ ᴄᴏɴᴛᴀᴛᴏ.</h2>
+<p class="sub pulse-neon">ᴛɪʀᴇ ᴅúᴠɪᴅᴀꜱ, ᴄᴏᴍʙɪɴᴇ ᴏ ᴇɴᴠɪᴏ ᴇ ʀᴇᴄᴇʙᴀ ᴏꜰᴇʀᴛᴀꜱ ᴘᴇʀꜱᴏɴᴀʟɪᴢᴀᴅᴀꜱ. 💬</p>
+      <div class="row">
+        <a class="btn ok" href="https://wa.me/5581993523392?text=Olá%20Luzeterna,%20quero%20ajuda%20com%20minha%20compra">ɢᴀɴɢꜱᴛᴇʀꜱᴜᴘᴏʀᴛᴇ@ɢᴍᴀɪʟ.ᴄᴏᴍ</a>
+      </div>
+      <p class="label" style="margin-top:10px">ᴀᴛᴇɴᴅɪᴍᴇɴᴛᴏ: ꜱᴇɢ–ꜱáʙ, 𝟤𝟦ʜ–𝟦𝟪ʜ (ʙʀᴀꜱíʟɪᴀ)</p>
+    </div>
+  </section>
+<style></style>
+
+  <!-- FAQ -->
+<section id="faq" class="section">
+  <div class="wrap" style="text-align:center">
+  <h2 class="pulse-neon">ᴘᴇʀɢᴜɴᴛᴀꜱ ꜰʀᴇǫᴜᴇɴᴛᴇꜱ</h2>
+<p class="sub pulse-neon">ᴛʀᴀɴꜱᴘᴀʀᴇᴄɪᴀ ꜱᴇᴍᴘʀᴇ</p>
+
+    <!-- cards de perguntas -->
+    
+      <details> 
+ <section id="cards de perguntas" class="section">
+  <div class="card-wrap" style="text-align:center">
+           <div class="card plan" style="border:2px solid var(--brand)">
+
+      <details>
+        <summary>ᴘᴏꜱꜱᴏ ᴛʀᴏᴄᴀʀ ᴏᴜ ᴅᴇᴠᴏʟᴠᴇʀ?</summary>
+        <p>ꜱɪᴍ, ᴠᴏᴄê ᴛᴇᴍ ᴀᴛé 𝟩 ᴅɪᴀꜱ ᴄᴏʀʀɪᴅᴏꜱ ᴘᴀʀᴀ ꜱᴏʟɪᴄɪᴛᴀʀ ᴛʀᴏᴄᴀ ᴏᴜ ᴅᴇᴠᴏʟᴜçãᴏ.</p>
+      </details>
+
+      <details>
+        <summary>ǫᴜᴀɪꜱ ꜰᴏʀᴍᴀꜱ ᴅᴇ ᴘᴀɢᴀᴍᴇɴᴛᴏ ᴀᴄᴇɪᴛᴀᴍ?</summary>
+        <p>ᴀᴄᴇɪᴛᴀᴍᴏꜱ ᴄᴀʀᴛõᴇꜱ ᴅᴇ ᴄʀéᴅɪᴛᴏ, ᴘɪx ᴇ ʙᴏʟᴇᴛᴏ ʙᴀɴᴄáʀɪᴏ.</p>
+      </details>
+
+      <details>
+        <summary>ᴇxɪꜱᴛᴇ ꜱᴜᴘᴏʀᴛᴇ ᴅᴇᴅɪᴄᴀᴅᴏ?</summary>
+        <p>ɴᴏꜱꜱᴏ ꜱᴜᴘᴏʀᴛᴇ é 𝟤𝟦/𝟩 ᴠɪᴀ ᴄʜᴀᴛ ᴇ ᴡʜᴀᴛꜱᴀᴘᴘ.</p>
+      </details>
+</section>
+</div>
+<audio autoplay loop>
+  <source src="" type="audio/mpeg">
+</audio>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Exemplo de rastreio simples de clique (pode trocar por GA/GTM)
+    document.querySelectorAll('[href*="wa.me"]').forEach(a=>{
+      a.addEventListener('click', ()=>console.log('WhatsApp CTA:', a.href));
+    });
+
+    
+  </script>
+
+  <!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>𝕮𝖔𝖑𝖎𝖓𝖆 𝖂𝖊𝖆𝖙𝖍𝖊𝖗🌡️</title>
+
+<!-- Fonts & libraries -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
+
+<style> 
+/* Card do formulário */
+.contato-card {
+  max-width: 650px;        
+  margin: 10px auto;        /* mínimo espaço externo */
+  padding: 20px;            /* espaço interno equilibrado */
+  border: 2px solid var(--brand);
+  border-radius: 15px;
+  background: rgba(20, 20, 20, 0.9);
+  box-shadow: 0 0 15px rgba(0,255,255,0.25);
+  text-align: center;       /* centraliza tudo */
+}
+
+/* Títulos e textos */
+.contato-card h2,
+.contato-card p,
+.contato-card label {
+  margin: 4px 0;           /* quase nada de espaço */
+  line-height: 1.2em;      /* deixa o texto mais próximo */
+}
+
+/* Inputs e textarea */
+.contato-card input,
+.contato-card textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;           /* campos bem próximos */
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 0.95em;
+}
+/* Aproximar Produtos e Planos */
+section#produtos {
+  margin-bottom: 10px; /* espaço pequeno após produtos */
+  padding-bottom: 5px;
+}
+section {
+  margin: 10px 0 !important; /* ajusta espaço entre qualquer seção */
+  padding: 5px 0 !important;
+}
+
+section#planos {
+  margin-top: 5px; /* reduz o espaço antes dos planos */
+  padding-top: 5px;
+}
+
+/* Largura dos cards centralizada */
+.bottom-row .card-wrapper.full-width {
+  width: 90%;
+  margin: 0 auto;
+}
+
+/* Notícias com mesmo tamanho do mapa */
+.news-block {
+  width: 100%;
+  max-width: 100%;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #0ff;
+  background: #111;
+  margin-bottom: 20px;
+}
+
+/* Linha de 3 vídeos lado a lado */
+.videos-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Cada vídeo ocupa 1/3 da linha */
+.video-block {
+  flex: 1;
+  max-width: 32%;
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px #0ff;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Vídeos responsivos */
+.video-block video {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.4);
+}
+
+/* Link de vídeo com efeito neon */
+.video-block .video-link a {
+  display: inline-block;
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 18px;
+  color: rgb(0,255,255);
+  text-shadow: 0 0 8px rgb(0,255,255), 0 0 16px rgb(0,200,255), 0 0 24px rgb(255,255,255);
+  animation: pulseNeonText 2s infinite alternate;
+  text-decoration: none;
+}
+
+/* Mapa centralizado */
+#map {
+  width: 100%;
+  height: 400px; /* ajuste conforme necessidade */
+  margin: 0 auto;
+}
+
+/* Espaçamento entre linhas */
+.bottom-row {
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.top-row {
+    display: flex;
+    justify-content: center; /* centraliza os cards na linha */
+    gap: 5px; /* espaço entre os cards, diminua se quiser mais próximos */
+    flex-wrap: wrap; /* mantém responsivo em telas pequenas */
+    margin-bottom: 5px; /* diminui o espaço abaixo da linha */
+}
+
+.card-wrapper {
+    flex: 1 1 500px; /* os cards crescem para ocupar mais espaço e têm largura mínima */
+    max-width: 600px; /* define largura máxima dos cards */
+}
+
+@keyframes pulseNeonText {
+  from { text-shadow: 0 0 6px rgb(0,255,255), 0 0 12px rgb(0,200,255); }
+  to   { text-shadow: 0 0 12px rgb(0,255,255), 0 0 24px rgb(0,200,255), 0 0 36px white; }
+}
+.map-title {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.neon-card {
+  background: rgba(0, 0, 0, 0.7); /* semitransparente */
+  border-radius: 12px;
+  padding: 12px 16px;
+  margin: 10px;
+  box-shadow: 0 0 10px rgba(0,255,255,0.6), 0 0 20px rgba(0,200,255,0.4), 0 0 30px rgba(255,255,255,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+}
+
+.neon-card h3 {
+  color: rgb(0,255,255);
+  text-shadow: 0 0 4px rgb(0,255,255), 0 0 8px rgb(0,200,255), 0 0 12px rgb(255,255,255);
+}
+
+.neon-card .info {
+  font-weight: bold;
+  color: #0ff;
+  text-shadow: 0 0 3px #0ff, 0 0 6px #0cc, 0 0 9px #0ff;
+}
+
+.neon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(0,255,255,0.8), 0 0 30px rgba(0,200,255,0.6), 0 0 40px rgba(255,255,255,0.4);
+}
+
+/* Top row: Previsão + Compesa */
+.top-row {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  gap: 14px;               /* diminui espaço entre os cards */
+  flex-wrap: wrap;
+  margin-bottom: 20px;     /* espaço entre top-row e mapa */
+}
+
+/* Cada card da linha de cima */
+.top-row .card-wrapper {
+  flex: 1 1 380px;         /* largura mínima 380px, flexível */
+  max-width: 480px;
+}
+
+/* Bottom row: Mapa-Múndi */
+.bottom-row {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  width: 100%;
+}
+
+/* Card do mapa ocupa largura dos dois cards de cima */
+.card-wrapper.full-width {
+  max-width: 770px;        /* largura total combinada */
+  width: 100%;
+}
+
+/* Ajuste do mapa */
+#map {
+  width: 100%;
+  max-width: 960px;       /* não excede tela */
+  height: 460px;
+  border-radius: 12px;
+}
+  :root{
+    --bg1:#020218; --bg2:#07132a; --bg3:#001a36;
+    --card-bg: rgba(10,14,20,0.9);
+    --neon1:#cf8bf3; --neon2:#00f3ff; --accent:#a770ef; --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:"Cinzel",serif;background:#000;color:#eaf6ff;overflow-x:hidden}
+/* Cards principais: efeito neon atrás */
+.card-main {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
+  border-radius: 16px;
+  padding: 20px;
+  min-height: 260px;
+  text-align: center;
+  color: #eaf6ff;
+  overflow: visible;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.card-main {
+  display: flex;
+  flex-direction: column;       /* empilha elementos verticalmente */
+  align-items: center;          /* centraliza horizontalmente */
+  justify-content: center;      /* centraliza verticalmente */
+  height: 100%;                 /* ocupa toda altura do card */
+  position: relative;           /* se for usar efeito neon atrás */
+  padding: 20px;
+  text-align: center;
+}
+.card-wrapper {
+  position: relative;       /* permite glow atrás */
+  width: 100%;              /* mantém tamanho do grid */
+  max-width: 320px;         /* mesmo limite do card original */
+}
+.card-wrapper .card-main.card-neon {
+  background: #111;
+  border: 2px solid #00ffff;
+  border-radius: 16px;
+  padding: 22px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 12px #00ffff, 0 0 24px #00ffff, 0 0 36px #a770ef, 0 0 48px #cf8bf3;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.card-wrapper .card-main.card-neon:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 24px #00ffff, 0 0 48px #00ffff, 0 0 72px #a770ef, 0 0 96px #cf8bf3;
+}
+
+.card-wrapper .card-main.card-neon .neon-title {
+  font-size: 22px;
+  color: #00ffff;
+  text-shadow: 0 0 6px #00ffff, 0 0 12px #00f3ff, 0 0 18px #a770ef;
+}
+
+.card-neon {
+  position: absolute;       /* fica atrás do card */
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.6);
+  box-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 30px #a770ef, 0 0 40px #cf8bf3;
+  z-index: 0;
+}
+
+.card {
+  position: relative;       /* acima do glow */
+  z-index: 1;
+}
+.card-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px; /* opcional, mantém tamanho do card */
+  margin: 0 auto 22px;
+}
+
+.card-neon {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: rgba(0,255,255,0.1);
+  filter: blur(16px);
+  z-index: -1; /* fica atrás do conteúdo */
+}
+
+.card-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;       /* centraliza horizontalmente */
+  justify-content: center;   /* centraliza verticalmente */
+  text-align: center;
+  padding: 22px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+.center-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+.top-row {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  gap: 20px; /* espaço entre os cards */
+  flex-wrap: wrap; /* para quebrar linha se a tela for pequena */
+  margin-bottom: 30px;
+}
+
+.card-wrapper {
+  width: 300px; /* largura fixa para os cards */
+  position: relative;
+}
+/* Linha de cima */
+.top-row {
+  display: flex;
+  gap: 10px; /* diminui o espaço entre os cards */
+  justify-content: center;
+  width: 100%;
+}
+
+/* Cada card da linha de cima */
+.card-wrapper {
+  width: 380px; /* aumenta a largura dos cards */
+}
+
+.card-main {
+  background: #111;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 10px #0ff;
+}
+
+/* Linha de baixo: Mapa-Múndi */
+.bottom-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Card do mapa ocupa a largura dos 2 cards de cima */
+.card-wrapper.full-width {
+  width: 770px; /* 380 + 380 + 10px gap */
+}
+
+.map {
+  width: 100%;
+  height: 460px;
+  border-radius: 12px;
+}
+
+.card-main {
+  background: #111;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza conteúdo interno */
+  box-shadow: 0 0 10px #0ff;
+}
+
+.map-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.map {
+  width: 960px; /* largura ajustada */
+  height: 460px; /* altura ajustada */
+  border-radius: 12px;
+}
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Linha de cima */
+.top-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Cada card da linha de cima */
+.card-wrapper {
+  width: 300px; /* tamanho dos cards de cima */
+}
+
+.card-main {
+  background: #111;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 0 10px #0ff;
+}
+
+/* Linha de baixo: Mapa-Múndi */
+.bottom-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Card do mapa ocupa a largura dos 2 cards de cima */
+.card-wrapper.full-width {
+  width: 620px; /* 300px + 300px + 20px gap */
+}
+
+.map {
+  width: 100%;
+  height: 460px;
+  border-radius: 12px;
+}
+
+/* Neon card atrás do link */
+.card-main .link-card {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.map-wrapper {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  margin-top: 20px;        /* espaço entre os cards e o mapa */
+}
+
+#map {
+  width: 80%;      /* tamanho do mapa */
+  max-width: 900px; /* limita para não estourar a tela */
+  height: 400px;
+  border-radius: 12px;
+}
+
+/* Flex container para Previsão + Compesa */
+.top-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.top-row .card-main {
+  flex: 1 1 380px;
+  max-width: 480px;
+}
+
+/* Mapa grande */
+#map {
+  width: 100%;
+  height: 420px;
+  border-radius: 12px;
+}
+
+/* Card vídeo */
+.card-video {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,255,255,0.4);
+}
+
+  /* Galactic animated background */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:-4;
+    background:
+      radial-gradient(600px 300px at 10% 20%, rgba(255,120,200,0.06), transparent 10%),
+      radial-gradient(800px 400px at 80% 70%, rgba(0,200,255,0.04), transparent 12%),
+      linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
+    background-size:300% 300%;
+    animation:bgMove 28s linear infinite;
+    filter:blur(6px) saturate(120%);
+  }
+  @keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+  /* twinkling stars */
+  .stars{position:fixed;inset:0;pointer-events:none;z-index:-3}
+  .star{position:absolute;border-radius:50%;background:rgba(255,255,255,0.9);box-shadow:0 0 6px rgba(255,255,255,0.08);opacity:.8;animation:twinkle 3s linear infinite}
+  @keyframes twinkle{0%{opacity:.15}50%{opacity:1}100%{opacity:.15}}
+
+  header{
+    position:sticky;top:0;background:linear-gradient(90deg,rgba(3,6,12,0.8),rgba(5,8,20,0.6));
+    padding:18px;text-align:center;font-family:"Orbitron",sans-serif;font-size:20px;color:#fff;text-shadow:0 0 12px var(--neon1),0 0 20px var(--neon2);
+    z-index:50;border-bottom:1px solid rgba(255,255,255,0.03);
+  }
+
+  .wrap{max-width:1280px;margin:28px auto;padding:0 16px 140px}
+
+  /* Grid for forecast cards */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:22px}
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:700px){.grid{grid-template-columns:1fr}}
+
+  .card{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
+    border-radius:16px;padding:22px;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+    border:1px solid rgba(255,255,255,0.03);text-align:center;color:#eaf6ff;
+    transition:transform .25s ease, box-shadow .25s ease;overflow:visible
+  }
+  .card:hover{transform:translateY(-8px);box-shadow:0 30px 80px rgba(0,0,0,0.72)}
+
+  h3{font-family:"Orbitron",sans-serif;color:#fff;margin-bottom:6px;text-shadow:0 0 8px var(--neon1),0 0 16px var(--neon2)}
+
+  .emoji-row{font-size:20px;margin:8px 0;display:flex;gap:8px;align-items:center;justify-content:center}
+  .emoji-big{font-size:36px;margin:6px 0}
+  .info{margin:6px 0;font-size:15px}
+  .muted{opacity:0.9;font-size:13px;color:#cfe8ff}
+
+  canvas{width:100% !important;height:160px !important;max-height:220px}
+
+
+  /* finance grid: 5 columns responsive */
+  .grid-finance {
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:20px;
+    margin-top:26px
+  }
+
+  @media(max-width:1200px){
+    .grid-finance{grid-template-columns:repeat(3,1fr)}
+  }
+
+  @media(max-width:900px){
+    .grid-finance{grid-template-columns:repeat(2,1fr)}
+  }
+
+  @media(max-width:700px){
+    .grid-finance{grid-template-columns:1fr}
+    .news-card{min-height:auto}
+    #map{height:260px}
+  }
+
+  .finance-card {
+    min-height:140px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+    border-radius:14px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(0,0,0,0.18));
+    border:1px solid rgba(255,255,255,0.03);
+    text-align:center
+  }
+
+  .finance-card .divider {
+    width:60%;
+    height:1px;
+    background:linear-gradient(90deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));
+    margin:10px 0;
+    border-radius:2px
+  }
+
+  /* news card same size as map */
+  .news-card {
+    min-height:420px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    padding:18px;
+    border-radius:12px;
+    background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(0,0,0,0.22));
+    border:1px solid rgba(255,255,255,0.03)
+  }
+
+  .news-list{flex:1;overflow:auto;padding-right:8px}
+  .news-item{padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);margin-bottom:8px;text-align:left}
+  .news-item a{color:#fff;text-decoration:none;font-weight:700}
+  .news-item p{color:#dfe8ff;font-size:13px;margin-top:6px}
+
+  @keyframes pulseNeonText {
+  from { text-shadow: 0 0 6px rgb(0,255,255), 0 0 12px rgb(0,200,255); }
+  to   { text-shadow: 0 0 12px rgb(0,255,255), 0 0 24px rgb(0,200,255), 0 0 36px white; }
+}
+
+  /* youtubers grid */
+  .yt-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin-top:12px
+  }
+
+  @media(max-width:900px){
+    .yt-grid{grid-template-columns:1fr}
+  }
+
+  .yt-card {
+    background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.12));
+    padding:10px;
+    border-radius:10px;
+    display:flex;
+    gap:12px;
+    align-items:center
+  }
+
+  .yt-thumb {
+    width:96px;
+    height:56px;
+    border-radius:8px;
+    background:linear-gradient(90deg,#ff6b6b,#ffb86b);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-weight:800
+  }
+
+  footer {
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:10px 12px;
+    text-align:center;
+    background:linear-gradient(90deg,rgba(2,0,15,0.9),rgba(8,0,40,0.9));
+    color:#fff;
+    font-size:14px;
+    z-index:60
+  }
+
+  .audio-player {
+    position:fixed;
+    right:18px;
+    bottom:86px;
+    z-index:70;
+    width:240px;
+    height:64px;
+    border-radius:14px;
+    background:linear-gradient(135deg,rgba(167,112,239,0.12),rgba(0,243,255,0.06));
+    box-shadow:0 12px 40px rgba(0,0,0,0.6);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px
+  }
+
+  .small-muted{font-size:12px;color:#cfe8ff;opacity:0.9}
+</style>
+</head>
+<body> 
+  <div class="stars" id="stars"></div>
+  <div class="wrap">
+<div class="dashboard">
+
+    <!-- YouTube promotions -->
+    <div style="margin-top:22px">
+      <h3 style="text-align:center">🔥 Promo — Principais Canais YouTube</h3>
+      <div class="yt-grid" style="margin-top:12px">
+        <!-- Brazil -->
+        <div class="yt-card"><div class="yt-thumb">BR1</div><div><strong>@SKTNTO BR 1</strong><div class="small-muted">Games - Tech & Lifestyle</div></div></div>
+        <div class="yt-card"><div class="yt-thumb">BR2</div><div><strong>@EVILHOTGIRL BR 2</strong><div class="small-muted">Games & Entretenimento</div></div></div>
+        <div class="yt-card"><div class="yt-thumb">BR3</div><div><strong>Canal BR 3</strong><div class="small-muted">Entretenimento</div></div></div>
+
+        <!-- USA -->
+        <div class="yt-card"><div class="yt-thumb">US1</div><div><strong>Channel US 1</strong><div class="small-muted">Tech reviews</div></div></div>
+        <div class="yt-card"><div class="yt-thumb">US2</div><div><strong>Channel US 2</strong><div class="small-muted">Finance</div></div></div>
+        <div class="yt-card"><div class="yt-thumb">US3</div><div><strong>Channel US 3</strong><div class="small-muted">Science</div></div></div>
+
+        <!-- Europe -->
+        <div class="yt-card"><div class="yt-thumb">EU1</div><div><strong>Channel EU 1</strong><div class="small-muted">Documentaries</div></div></div>
+        <div class="yt-card"><div class="yt-thumb">EU2</div><div><strong>Channel EU 2</strong><div class="small-muted">Music</div></div></div>
+        <div class="yt-card"><div class="yt-thumb">EU3</div><div><strong>Channel EU 3</strong><div class="small-muted">Tech</div></div></div>
+      </div>
+    </div>
+
+  </div> <!-- wrap -->
+
+  <footer>🌌 Desenvolvido por #Neto Medeiros - Robozinho Galáctico © 2025</footer>
+
+<script>
+/* =========================
+   Config - sua chave OpenWeather
+   ========================= */
+const API_KEY = "582c1a981cd2720482ca8a74be18cd98";
+
+/* =========================
+   Stars generator
+   ========================= */
+const stars = document.getElementById('stars');
+for (let i=0;i<220;i++){
+  const s = document.createElement('div');
+  s.className='star';
+  const size = 1 + Math.random()*3;
+  s.style.width = s.style.height = size + 'px';
+  s.style.left = (Math.random()*100) + '%';
+  s.style.top = (Math.random()*100) + '%';
+  s.style.animationDuration = (1.2 + Math.random()*4) + 's';
+  s.style.opacity = 0.3 + Math.random()*0.9;
+  stars.appendChild(s);
+}
+
+/* =========================
+   Weather emoji helper
+   ========================= */
+function getWeatherEmoji(desc, temp){
+  desc = (desc||'').toLowerCase();
+  if(desc.includes('clear') || desc.includes('limpo') || desc.includes('sun')) return temp>30 ? '☀️ 🔥' : '☀️';
+  if(desc.includes('cloud') || desc.includes('nublado') || desc.includes('nuvem')) return temp<10 ? '☁️ 🥶' : '☁️';
+  if(desc.includes('rain') || desc.includes('chuva')) return '🌧️';
+  if(desc.includes('snow') || desc.includes('neve')) return '❄️';
+  if(desc.includes('thunder') || desc.includes('trovoada')) return '🌩️';
+  return '🌡️';
+}
+
+/* =========================
+   Load weather + charts
+   ========================= */
+async function loadWeather(city,country,chartId,tempId,descId,emojiRowId){
+  try {
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city + (country?','+country:''))}&limit=1&appid=${API_KEY}`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) {
+      document.getElementById(tempId).innerText = city + ': localização não encontrada';
+      return;
+    }
+    const {lat,lon,name} = geo[0];
+    const wRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=pt_br`);
+    const w = await wRes.json();
+    if(!w || !w.list) return;
+    const now = w.list[0];
+    const temp = now.main.temp;
+    document.getElementById(tempId).innerText = `${name}: ${temp.toFixed(1)}°C`;
+    document.getElementById(descId).innerText = now.weather[0].description;
+    // emojis: keep row but highlight relevant emoji first
+    const emojiText = getWeatherEmoji(now.weather[0].description,temp) + " • " + "                 ";
+    document.getElementById(emojiRowId).innerText = emojiText;
+
+    // chart
+    const slice = w.list.slice(0,7);
+    const labels = slice.map((d,i)=> i===0 ? 'Agora' : new Date(d.dt*1000).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}));
+    const max = slice.map(d=>d.main.temp_max);
+    const min = slice.map(d=>d.main.temp_min);
+    const ctx = document.getElementById(chartId).getContext('2d');
+    if(ctx._chart) ctx._chart.destroy();
+
+    const gradient = ctx.createLinearGradient(0,0,0,160);
+    gradient.addColorStop(0,'rgba(167,112,239,0.35)');
+    gradient.addColorStop(1,'rgba(0,243,255,0.04)');
+
+    ctx._chart = new Chart(ctx,{
+      type:'line',
+      data:{labels,datasets:[
+        {label:'Máx',data:max,borderColor:'#ff8da1',backgroundColor:gradient,tension:0.36,fill:true,pointRadius:3,borderWidth:2},
+        {label:'Mín',data:min,borderColor:'#7fb7ff',tension:0.36,fill:false,pointRadius:2,borderWidth:2}
+      ]},
+      options:{
+        plugins:{legend:{labels:{color:'#fff'}}},
+        scales:{x:{ticks:{color:'#fff'}},y:{ticks:{color:'#fff'}}},
+        elements:{line:{cap:'round'}},
+        interaction:{mode:'index',intersect:false}
+      }
+    });
+  }catch(e){ console.error('Erro loadWeather:',e); }
+}
+
+/* load default cities */
+loadWeather('Gramado','BR','chart-gramado','gramado-temp','gramado-desc','gramado-emoji-row');
+loadWeather('São Paulo','BR','chart-sp','sp-temp','sp-desc','sp-emoji-row');
+loadWeather('Recife','BR','chart-recife','recife-temp','recife-desc','recife-emoji-row');
+loadWeather('Miami','US','chart-miami','miami-temp','miami-desc','miami-emoji-row');
+loadWeather('Santiago','CL','chart-santiago','santiago-temp','santiago-desc','santiago-emoji-row'); // Santiago here
+loadWeather('Lisboa','PT','chart-lisboa','lisboa-temp','lisboa-desc','lisboa-emoji-row');
+
+/* =========================
+   Search city (top)
+   ========================= */
+async function searchCity(){
+  const q = document.getElementById('search').value.trim();
+  if(!q){ document.getElementById('search-result').innerText = 'Digite uma cidade.'; return; }
+  document.getElementById('search-result').innerText = 'Buscando...';
+  try{
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(q)}&limit=1&appid=${API_KEY}`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) { document.getElementById('search-result').innerText = 'Cidade não encontrada.'; return; }
+    const name = geo[0].name + (geo[0].state?(', '+geo[0].state):'') + (geo[0].country?(', '+geo[0].country):'');
+    document.getElementById('search-result').innerHTML = `<strong>${name}</strong> — lat ${geo[0].lat.toFixed(3)}, lon ${geo[0].lon.toFixed(3)}`;
+    if(window.map) map.setView([geo[0].lat,geo[0].lon],6);
+  }catch(e){ console.error(e); document.getElementById('search-result').innerText='Erro na busca.'}
+}
+
+/* =========================
+   Compesa (fake)
+   ========================= */
+function checkCompesa(){
+  const cep = document.getElementById('cep').value.trim();
+  if(!cep){ document.getElementById('compesa-result').innerText='Digite um CEP.'; return; }
+  const dias = ['Segunda','Quarta','Sexta'];
+  const dia = dias[Math.floor(Math.random()*dias.length)];
+  document.getElementById('compesa-result').innerText = `Próximo abastecimento provável: ${dia}-feira (Observação) Pode haver alterações da Compesa / manutenção).`;
+}
+
+/* =========================
+   Leaflet map
+   ========================= */
+const map = L.map('map',{attributionControl:true}).setView([-15, -30],2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  maxZoom:19, attribution:'© OpenStreetMap contributors'
+}).addTo(map);
+
+// sample markers (centered on SA sample cities)
+const sample = [
+  {lat:-22.90,lon:-43.20,label:'Rio de Janeiro'},
+  {lat:-23.55,lon:-46.63,label:'São Paulo'},
+  {lat:-8.05,lon:-34.9,label:'Recife'},
+  {lat:-8.0,lon:-35.3,label:'Gravata'},
+  {lat:-33.45,lon:-70.66,label:'Santiago'}
+];
+sample.forEach(s=> L.marker([s.lat,s.lon]).addTo(map).bindPopup(`<strong>${s.label}</strong>`));
+window.addEventListener('resize',()=> map.invalidateSize());
+setTimeout(()=> map.invalidateSize(),700);
+
+/* =========================
+   Moon card: SunCalc
+   ========================= */
+function formatAMPM(date){
+  return date.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',hour12:true});
+}
+function moonPhaseName(phase){
+  if(phase===0 || phase===1) return ["Nova","🌑"];
+  if(phase>0 && phase<0.25) return ["Crescente","🌒"];
+  if(Math.abs(phase-0.25)<0.01) return ["Quarto Crescente","🌓"];
+  if(phase>0.25 && phase<0.5) return ["Crescente Gibosa","🌔"];
+  if(Math.abs(phase-0.5)<0.01) return ["Cheia","🌕"];
+  if(phase>0.5 && phase<0.75) return ["Minguante Gibosa","🌖"];
+  if(Math.abs(phase-0.75)<0.01) return ["Quarto Minguante","🌗"];
+  return ["Minguante","🌘"];
+}
+
+function updateMoonFor(lat,lon,label){
+  const now = new Date();
+  const moonTimes = SunCalc.getMoonTimes(now, lat, lon);
+  const illum = SunCalc.getMoonIllumination(now);
+  const [name,emoji] = moonPhaseName(illum.phase);
+  document.getElementById('moon-icon').innerText = emoji;
+  document.getElementById('moon-name').innerText = `${name} • ${label||''}`;
+  document.getElementById('moon-datetime').innerText = now.toLocaleDateString('pt-BR') + ' • ' + now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  const rise = moonTimes.rise ? formatAMPM(moonTimes.rise) : '—';
+  const setT = moonTimes.set ? formatAMPM(moonTimes.set) : '—';
+  document.getElementById('moon-rise-set').innerText = `Nascer: ${rise} | Pôr: ${setT}`;
+  const phrases = {
+    "Cheia":"O teu brilho me torna inteira; olho pra ti e me encho de luz.",
+    "Quarto Crescente":"Cada passo teu acende em mim uma nova esperança.",
+    "Crescente":"Cresço por ti, como a lua que aprende a ser estrela.",
+    "Minguante":"Mesmo diminuindo, guardo tudo o que me deste; há beleza em cada lembrança.",
+    "Quarto Minguante":"O silêncio entre nós fala mais que qualquer palavra.",
+    "Nova":"Em silêncio eu me preparo para voltar a te iluminar."
+  };
+  const base = phrases[name] || "Meu amor te acompanha em cada noite e em cada suspiro.";
+  document.getElementById('moon-phrase').innerText = base;
+  // optionally center map to lat/lon
+  if(window.map) map.setView([lat,lon],5);
+}
+
+// default moon card to Gravata approx coords
+updateMoonFor(-8.0,-35.3,"Gravata, BR");
+
+async function searchMoonCity(){
+  const q = document.getElementById('moon-search').value.trim();
+  if(!q) return alert('Digite cidade (ex: Gravata, BR)');
+  try{
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(q)}&limit=1&appid=${API_KEY}`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) return alert('Local não encontrado.');
+    updateMoonFor(geo[0].lat, geo[0].lon, geo[0].name + (geo[0].country?(', '+geo[0].country):''));
+  }catch(e){ console.error(e); alert('Erro ao buscar cidade.') }
+}
+
+/* =========================
+   Audio player (local file expected near site)
+   ========================= */
+const audioToggleBtn = document.getElementById('audio-toggle');
+const audioTrackName = document.getElementById('audio-track-name');
+let audio = new Audio();
+audio.src = 'lua_vozinha.wav'; // place this file beside index.html or set a URL
+let playing=false;
+audioToggleBtn.addEventListener('click', ()=>{
+  if(!playing){ audio.play().catch(()=>alert("Não foi possível tocar o áudio local. Coloque 'lua_vozinha.wav' ao lado do site ou edite audio.src")); audioToggleBtn.innerText='⏸'; playing=true }
+  else { audio.pause(); audioToggleBtn.innerText='▶'; playing=false }
+});
+audio.addEventListener('error', ()=>{ audioTrackName.innerText = "arquivo: lua_vozinha.wav (não encontrado)"; });
+
+/* =========================
+   UX tweaks: map resizing
+   ========================= */
+map.on('load', ()=> map.invalidateSize());
+setTimeout(()=> map.invalidateSize(), 800);
+
+</script>
+
+<audio autoplay loop>
+  <source src="/audio/musica.mp3" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
+
+</body>
+</html>

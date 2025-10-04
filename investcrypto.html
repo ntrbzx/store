@@ -1,0 +1,619 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ᴏᴛᴇɴ ɪɴᴠᴇꜱᴛɪᴍᴇɴᴛᴏꜱ © 𝟤𝟢𝟤𝟧 /title>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>𝕮𝖔𝖑𝖎𝖓𝖆 𝖂𝖊𝖆𝖙𝖍𝖊𝖗🌡️</title>
+
+<!-- Fonts & libraries -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
+
+<style>
+  /* Fundo temático */
+body, html{
+  height:100%;
+  font-family:"Cinzel",serif;
+  background: url('https://images.unsplash.com/photo-1641276959333-4d1b0bcb7a74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') 
+              no-repeat center center fixed;
+  background-size: cover;
+  color:#eaf6ff;
+  overflow-x:hidden;
+}
+
+
+/* Rodapé estilizado */
+footer {
+  text-align: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.7);
+  color: #0ff;
+  font-size: 15px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #0ff, 0 0 16px #00f3ff;
+  border-top: 2px solid rgba(0,255,255,0.3);
+  box-shadow: 0 -2px 15px rgba(0,255,255,0.3);
+  margin-top: 40px;
+}
+
+/* Reset & fonts */
+*{box-sizing:border-box;margin:0;padding:0;}
+body, html{height:100%;font-family:"Cinzel",serif;background:#000;color:#eaf6ff;overflow-x:hidden;}
+header{
+  position:sticky;top:0;
+  background:linear-gradient(90deg,rgba(3,6,12,0.8),rgba(5,8,20,0.6));
+  padding:18px;text-align:center;font-family:"Orbitron",sans-serif;font-size:20px;color:#fff;
+  text-shadow:0 0 12px #cf8bf3,0 0 20px #00f3ff;
+  z-index:50;border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.wrap{
+  max-width:1280px;margin:28px auto;padding:0 16px 140px;
+  display:flex;flex-direction:column;align-items:center;gap:30px;
+}
+.neon-card{
+  background: rgba(0,0,0,0.7);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow:0 0 10px rgba(0,255,255,0.6),0 0 20px rgba(0,200,255,0.4),0 0 30px rgba(255,255,255,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  color:#fff;
+}
+.neon-card h3{text-align:center;margin-bottom:10px;}
+.neon-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(0,255,255,0.8),0 0 30px rgba(0,200,255,0.6),0 0 40px rgba(255,255,255,0.4);
+}
+/* Notícias + Mapa lado a lado */
+.news-map-row{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:20px;width:100%;
+}
+.news-map-row .news-card,.news-map-row .map-card{
+  flex:1 1 420px;
+  min-width:350px;
+  max-width:480px;
+  display:flex;flex-direction:column;
+}
+/* Scroll notícias */
+.news-list{flex:1;overflow-y:auto;padding-right:6px;margin-top:6px;}
+.news-item{padding:8px;border-radius:6px;background:rgba(255,255,255,0.02);margin-bottom:6px;}
+.news-item a{color:#0ff;text-decoration:none;font-weight:700;}
+.news-item p{color:#dfe8ff;font-size:13px;margin-top:4px;}
+/* Mapa */
+#map{width:100%;height:420px;border-radius:12px;}
+/* Linha de vídeos */
+.videos-section{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;width:100%;max-width:960px;
+}
+.videos-section video{width:100%;border-radius:12px;}
+/* Finance grid */
+.grid-finance{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;width:100%;max-width:1280px;
+}
+.finance-card{background:rgba(0,0,0,0.7);border-radius:12px;padding:14px;text-align:center;box-shadow:0 0 10px #0ff;}
+.finance-card .divider{width:60%;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));margin:6px auto;border-radius:2px;}
+.finance-card .muted{opacity:0.8;font-size:13px;color:#cfe8ff;}
+.finance-card .info{font-weight:700;margin-top:6px;}
+/* YouTube grid */
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.yt-card{background:rgba(0,0,0,0.6);padding:10px;border-radius:10px;display:flex;gap:12px;align-items:center;}
+.yt-thumb{width:96px;height:56px;border-radius:8px;background:linear-gradient(90deg,#ff6b6b,#ffb86b);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;}
+.small-muted{font-size:12px;color:#cfe8ff;opacity:0.9;}
+footer{
+  text-align:center;padding:10px 12px;background:linear-gradient(90deg,rgba(2,0,15,0.9),rgba(8,0,40,0.9));color:#fff;font-size:14px;width:100%;margin-top:40px;
+}
+.pulse-link{font-weight:700;font-size:18px;color:#0ff;text-decoration:none;animation:pulseNeonText 2s infinite alternate;text-align:center;display:block;margin:0 auto;padding:10px 0;}
+@keyframes pulseNeonText{from{text-shadow:0 0 6px #0ff,0 0 12px #0cc;}to{text-shadow:0 0 12px #0ff,0 0 24px #0cc,0 0 36px #fff;}}
+/* Moon card */
+.moon-card{text-align:center;background:rgba(0,0,0,0.7);border-radius:12px;padding:12px;box-shadow:0 0 10px #0ff;}
+.moon-emoji{font-size:2rem;}
+.moon-name{font-weight:700;margin:6px 0;}
+.moon-phrase{font-style:italic;margin:6px 0;}
+</style>
+</head>
+<body>
+
+<header>💸 ᴏᴛᴇɴ ɪɴᴠᴇꜱᴛɪᴍᴇɴᴛᴏꜱ © 𝟤𝟢𝟤𝟧  💸</header>
+
+<div class="wrap">
+
+  <!-- Notícias + Mapa lado a lado -->
+  <div class="news-map-row">
+    <div class="neon-card news-card">
+      <h3>📰 Notícias do Mundo</h3>
+      <div class="news-list" id="news-list">
+        <div class="news-item"><a href="#">Economia: Mercados globais em movimento</a><p>Principais bolsas reagiram às novas estimativas.</p></div>
+        <div class="news-item"><a href="#">Tecnologia: Novas GPUs</a><p>Fabricantes anunciam chips voltados a IA.</p></div>
+        <div class="news-item"><a href="#">Clima: Alertas para áreas costeiras</a><p>Tempestades isoladas previstas.</p></div>
+        <div class="news-item"><a href="#">Política: Cúpula internacional</a><p>Líderes trataram de energia, comércio e segurança.</p></div>
+      </div>
+      <div class="small-muted">Fontes: exemplos estáticos — substitua por feed real.</div>
+    </div>
+
+    <div class="neon-card map-card">
+      <h3>🌍 Mapa-Múndi</h3>
+      <div id="map"></div>
+    </div>
+  </div>
+  <!-- Linha de Vídeos -->
+  <div class="videos-section">
+ <div class="neon-card"><video controls><source src="/videos/video (1).mp4" type="video/mp4"></video></div>
+  </div>
+
+  <a href="http://127.0.0.1:5500/bemgangster.html" class="pulse-link"><header>ꜱɪᴛᴇ ᴏꜰɪᴄɪᴀʟ ᴅᴀ ʟᴏᴊᴀ ɪɴᴛᴇɢʀᴀᴅᴀ</header></a>
+
+  <!-- Finance cards -->
+  <div class="grid-finance" id="finance-grid" style="margin-top:0;">
+    <!-- Adicione os 15 cards como você já fez -->
+  </div>
+<!-- Card atrás do link -->
+<div style="background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 10px; 
+            box-shadow: 0 0 15px rgba(0,255,255,0.5); display: block; margin:0 auto 0 auto;">
+  <a href="#mais-informacoes"
+     style="font-weight:700; font-size:18px; color:rgb(0,255,255); 
+            text-shadow:0 0 8px rgb(0,255,255),0 0 16px rgb(0,200,255),0 0 24px rgb(255,255,255); 
+            animation:pulseNeonText 2s infinite alternate; text-decoration:none;">
+
+  </a>
+</div>
+<!-- Finance cards: 3 rows x 5 cols (15 cards) -->
+<div class="grid-finance" id="finance-grid" aria-live="polite" style="margin-top:0;">
+  <div class="finance-card neon-card"><h3>Intel</h3><div class="divider"></div><div class="muted">INTC • US$ 34.52</div><div class="info">+1.25%</div></div>
+  <div class="finance-card neon-card"><h3>Nvidia</h3><div class="divider"></div><div class="muted">NVDA • US$ 462.18</div><div class="info">+2.84%</div></div>
+  <div class="finance-card neon-card"><h3>Amazon</h3><div class="divider"></div><div class="muted">AMZN • US$ 134.11</div><div class="info">+0.56%</div></div>
+  <div class="finance-card neon-card"><h3>Apple</h3><div class="divider"></div><div class="muted">AAPL • US$ 182.65</div><div class="info">-0.22%</div></div>
+  <div class="finance-card neon-card"><h3>Microsoft</h3><div class="divider"></div><div class="muted">MSFT • US$ 332.89</div><div class="info">+0.74%</div></div>
+
+  <div class="finance-card neon-card"><h3>Nasdaq</h3><div class="divider"></div><div class="muted">NDX • 15,250 pts</div><div class="info">+0.45%</div></div>
+  <div class="finance-card neon-card"><h3>Dólar</h3><div class="divider"></div><div class="muted">USD/BRL • R$ 4.97</div><div class="info">+0.15%</div></div>
+  <div class="finance-card neon-card"><h3>Ouro</h3><div class="divider"></div><div class="muted">GOLD • US$ 1,927.50</div><div class="info">-0.18%</div></div>
+  <div class="finance-card neon-card"><h3>T-Mobile</h3><div class="divider"></div><div class="muted">TMUS • US$ 139.25</div><div class="info">+0.92%</div></div>
+  <div class="finance-card neon-card"><h3>Bank of America</h3><div class="divider"></div><div class="muted">BAC • US$ 29.75</div><div class="info">+0.61%</div></div>
+
+  <div class="finance-card neon-card"><h3>Banco do Brasil</h3><div class="divider"></div><div class="muted">BBAS3 • R$ 48.90</div><div class="info">-0.10%</div></div>
+  <div class="finance-card neon-card"><h3>Nubank</h3><div class="divider"></div><div class="muted">NU • US$ 7.25</div><div class="info">+3.14%</div></div>
+  <div class="finance-card neon-card"><h3>Wise</h3><div class="divider"></div><div class="muted">WISE • £ 7.32</div><div class="info">+1.02%</div></div>
+  <div class="finance-card neon-card"><h3>Bitcoin</h3><div class="divider"></div><div class="muted">BTC • US$ 26,542</div><div class="info">+4.21%</div></div>
+</div>
+
+<!-- Fechando todos os divs desnecessários -->
+</div> <!-- fecha grid ou card principal se houver -->
+</div> <!-- fecha card-wrapper se houver -->
+</div> <!-- fecha bottom container se houver -->
+
+  </div> <!-- wrap -->
+
+<script>
+  
+/* =========================
+   Leaflet map
+   ========================= */
+const map = L.map('map',{attributionControl:true}).setView([-15, -30],2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  maxZoom:19, attribution:'© OpenStreetMap contributors'
+}).addTo(map);
+
+// markers
+const sample = [
+  {lat:-22.90,lon:-43.20,label:'Rio de Janeiro'},
+  {lat:-23.55,lon:-46.63,label:'São Paulo'},
+  {lat:-8.05,lon:-34.9,label:'Recife'},
+  {lat:-8.0,lon:-35.3,label:'Gravata'},
+  {lat:-33.45,lon:-70.66,label:'Santiago'}
+];
+sample.forEach(s=> L.marker([s.lat,s.lon]).addTo(map).bindPopup(`<strong>${s.label}</strong>`));
+window.addEventListener('resize',()=> map.invalidateSize());
+setTimeout(()=> map.invalidateSize(),700);
+
+/* =========================
+   Moon card: SunCalc
+   ========================= */
+function formatAMPM(date){ return date.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',hour12:true}); }
+function moonPhaseName(phase){
+  if(phase===0 || phase===1) return ["Nova","🌑"];
+  if(phase>0 && phase<0.25) return ["Crescente","🌒"];
+  if(Math.abs(phase-0.25)<0.01) return ["Quarto Crescente","🌓"];
+  if(phase>0.25 && phase<0.5) return ["Crescente Gibosa","🌔"];
+  if(Math.abs(phase-0.5)<0.01) return ["Cheia","🌕"];
+  if(phase>0.5 && phase<0.75) return ["Minguante Gibosa","🌖"];
+  if(Math.abs(phase-0.75)<0.01) return ["Quarto Minguante","🌗"];
+  return ["Minguante","🌘"];
+}
+function updateMoonFor(lat,lon,label){
+  const now = new Date();
+  const moonTimes = SunCalc.getMoonTimes(now, lat, lon);
+  const illum = SunCalc.getMoonIllumination(now);
+  const [name,emoji] = moonPhaseName(illum.phase);
+  document.getElementById('moon-icon').innerText = emoji;
+  document.getElementById('moon-name').innerText = `${name} • ${label||''}`;
+  document.getElementById('moon-datetime').innerText = now.toLocaleDateString('pt-BR') + ' • ' + now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  const rise = moonTimes.rise ? formatAMPM(moonTimes.rise) : '—';
+  const setT = moonTimes.set ? formatAMPM(moonTimes.set) : '—';
+  document.getElementById('moon-rise-set').innerText = `Nascer: ${rise} | Pôr: ${setT}`;
+  const phrases = {
+    "Cheia":"O teu brilho me torna inteira; olho pra ti e me encho de luz.",
+    "Quarto Crescente":"Cada passo teu acende em mim uma nova esperança.",
+    "Crescente":"Cresço por ti, como a lua que aprende a ser estrela.",
+    "Minguante":"Mesmo diminuindo, guardo tudo o que me deste; há beleza em cada lembrança.",
+    "Quarto Minguante":"O silêncio entre nós fala mais que qualquer palavra.",
+    "Nova":"Em silêncio eu me preparo para voltar a te iluminar."
+  };
+  const base = phrases[name] || "Meu amor te acompanha em cada noite e em cada suspiro.";
+  document.getElementById('moon-phrase').innerText = base;
+}
+updateMoonFor(-8.0,-35.3,"Gravata, BR");
+async function searchMoonCity(){
+  const q = document.getElementById('moon-search').value.trim();
+  if(!q) return alert('Digite cidade (ex: Gravata, BR)');
+  try{
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(q)}&limit=1&appid=582c1a981cd2720482ca8a74be18cd98`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) return alert('Local não encontrado.');
+    updateMoonFor(geo[0].lat, geo[0].lon, geo[0].name + (geo[0].country?(', '+geo[0].country):''));
+    map.setView([geo[0].lat,geo[0].lon],5);
+  }catch(e){ console.error(e); alert('Erro ao buscar cidade.') }
+}
+
+/* =========================
+   Audio player
+   ========================= */
+const audio = new Audio('assets/musica.mp3'); // coloque o arquivo no caminho correto
+audio.loop=true;
+audio.autoplay=true;
+</script>
+
+</body>
+</html>
+
+<!-- Fonts & libraries -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
+
+<style>
+  /* Bottom row: Mapa-Múndi */
+.bottom-row {
+  display: flex;
+  justify-content: center; /* centraliza horizontalmente */
+  width: 100%;
+}
+
+/* Ajuste do mapa */
+#map {
+  width: 100%;
+  max-width: 960px;       /* não excede tela */
+  height: 460px;
+  border-radius: 12px;
+}
+/* Reset & fonts */
+body, html {
+  height: 100%;
+  font-family: "Cinzel", serif;
+  background: url('https://www.ineteconomics.org/uploads/featured/iStock-1314345497.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #eaf6ff;
+  overflow-x: hidden;
+}
+
+/* Container geral */
+.wrap{
+  max-width:1280px;margin:28px auto;padding:0 16px 140px;
+  display:flex;flex-direction:column;align-items:center;gap:30px;
+}
+
+/* Neon cards */
+.neon-card{
+  background: rgba(0,0,0,0.7);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow:0 0 10px rgba(0,255,255,0.6),0 0 20px rgba(0,200,255,0.4),0 0 30px rgba(255,255,255,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  color:#fff;
+}
+.neon-card h3{text-align:center;margin-bottom:10px;}
+.neon-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 0 20px rgba(0,255,255,0.8),0 0 30px rgba(0,200,255,0.6),0 0 40px rgba(255,255,255,0.4);
+}
+
+/* Notícias + Mapa lado a lado */
+.news-map-row{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:20px;width:100%;
+}
+.news-map-row .news-card,.news-map-row .map-card{
+  flex:1 1 420px; /* responsivo */
+  min-width:350px;
+  max-width:480px;
+  display:flex;flex-direction:column;
+}
+
+/* Scroll notícias */
+.news-list{flex:1;overflow-y:auto;padding-right:6px;margin-top:6px;}
+.news-item{padding:8px;border-radius:6px;background:rgba(255,255,255,0.02);margin-bottom:6px;}
+.news-item a{color:#0ff;text-decoration:none;font-weight:700;}
+.news-item p{color:#dfe8ff;font-size:13px;margin-top:4px;}
+
+/* Mapa */
+#map{width:100%;height:420px;border-radius:12px;}
+
+/* Linha de vídeos */
+.videos-section{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;width:100%;max-width:960px;
+}
+.videos-section video{width:100%;border-radius:12px;}
+
+/* Finance grid */
+.grid-finance{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;width:100%;max-width:1280px;
+}
+.finance-card{background:rgba(0,0,0,0.7);border-radius:12px;padding:14px;text-align:center;box-shadow:0 0 10px #0ff;}
+.finance-card .divider{width:60%;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));margin:6px auto;border-radius:2px;}
+.finance-card .muted{opacity:0.8;font-size:13px;color:#cfe8ff;}
+.finance-card .info{font-weight:700;margin-top:6px;}
+
+/* YouTube grid */
+.yt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
+.yt-card{background:rgba(0,0,0,0.6);padding:10px;border-radius:10px;display:flex;gap:12px;align-items:center;}
+.yt-thumb{width:96px;height:56px;border-radius:8px;background:linear-gradient(90deg,#ff6b6b,#ffb86b);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;}
+.small-muted{font-size:12px;color:#cfe8ff;opacity:0.9;}
+
+/* Footer */
+footer{
+  text-align:center;padding:10px 12px;background:linear-gradient(90deg,rgba(2,0,15,0.9),rgba(8,0,40,0.9));color:#fff;font-size:14px;width:100%;margin-top:40px;
+}
+
+/* Neon pulse link */
+@keyframes pulseNeonText{from{text-shadow:0 0 6px #0ff,0 0 12px #0cc;}to{text-shadow:0 0 12px #0ff,0 0 24px #0cc,0 0 36px #fff;}}
+.pulse-link{font-weight:700;font-size:18px;color:#0ff;text-decoration:none;animation:pulseNeonText 2s infinite alternate;text-align:center;display:block;margin:0 auto;padding:10px 0;}
+</style>
+</head>
+<body>
+
+<header>💸 ᴏᴛᴇɴ ɪɴᴠᴇꜱᴛɪᴍᴇɴᴛᴏꜱ © 𝟤𝟢𝟤𝟧 - ᴠᴏʟᴛᴇ ꜱᴇᴍᴘʀᴇ. 💸</header>
+<!-- Fechando todos os divs desnecessários -->
+</div> <!-- fecha grid ou card principal se houver -->
+</div> <!-- fecha card-wrapper se houver -->
+</div> <!-- fecha bottom container se houver -->
+  </div> <!-- wrap -->
+
+  <footer>
+  💹 Desenvolvido por #Neto Medeiros — Colina Invest © 2025
+</footer>
+
+<script>
+/* =========================
+   Config - sua chave OpenWeather
+   ========================= */
+const API_KEY = "582c1a981cd2720482ca8a74be18cd98";
+
+/* =========================
+   Stars generator
+   ========================= */
+const stars = document.getElementById('stars');
+for (let i=0;i<220;i++){
+  const s = document.createElement('div');
+  s.className='star';
+  const size = 1 + Math.random()*3;
+  s.style.width = s.style.height = size + 'px';
+  s.style.left = (Math.random()*100) + '%';
+  s.style.top = (Math.random()*100) + '%';
+  s.style.animationDuration = (1.2 + Math.random()*4) + 's';
+  s.style.opacity = 0.3 + Math.random()*0.9;
+  stars.appendChild(s);
+}
+
+/* =========================
+   Weather emoji helper
+   ========================= */
+function getWeatherEmoji(desc, temp){
+  desc = (desc||'').toLowerCase();
+  if(desc.includes('clear') || desc.includes('limpo') || desc.includes('sun')) return temp>30 ? '☀️ 🔥' : '☀️';
+  if(desc.includes('cloud') || desc.includes('nublado') || desc.includes('nuvem')) return temp<10 ? '☁️ 🥶' : '☁️';
+  if(desc.includes('rain') || desc.includes('chuva')) return '🌧️';
+  if(desc.includes('snow') || desc.includes('neve')) return '❄️';
+  if(desc.includes('thunder') || desc.includes('trovoada')) return '🌩️';
+  return '🌡️';
+}
+
+/* =========================
+   Load weather + charts
+   ========================= */
+async function loadWeather(city,country,chartId,tempId,descId,emojiRowId){
+  try {
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city + (country?','+country:''))}&limit=1&appid=${API_KEY}`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) {
+      document.getElementById(tempId).innerText = city + ': localização não encontrada';
+      return;
+    }
+    const {lat,lon,name} = geo[0];
+    const wRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=pt_br`);
+    const w = await wRes.json();
+    if(!w || !w.list) return;
+    const now = w.list[0];
+    const temp = now.main.temp;
+    document.getElementById(tempId).innerText = `${name}: ${temp.toFixed(1)}°C`;
+    document.getElementById(descId).innerText = now.weather[0].description;
+    // emojis: keep row but highlight relevant emoji first
+    const emojiText = getWeatherEmoji(now.weather[0].description,temp) + " • " + "                 ";
+    document.getElementById(emojiRowId).innerText = emojiText;
+
+    // chart
+    const slice = w.list.slice(0,7);
+    const labels = slice.map((d,i)=> i===0 ? 'Agora' : new Date(d.dt*1000).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}));
+    const max = slice.map(d=>d.main.temp_max);
+    const min = slice.map(d=>d.main.temp_min);
+    const ctx = document.getElementById(chartId).getContext('2d');
+    if(ctx._chart) ctx._chart.destroy();
+
+    const gradient = ctx.createLinearGradient(0,0,0,160);
+    gradient.addColorStop(0,'rgba(167,112,239,0.35)');
+    gradient.addColorStop(1,'rgba(0,243,255,0.04)');
+
+    ctx._chart = new Chart(ctx,{
+      type:'line',
+      data:{labels,datasets:[
+        {label:'Máx',data:max,borderColor:'#ff8da1',backgroundColor:gradient,tension:0.36,fill:true,pointRadius:3,borderWidth:2},
+        {label:'Mín',data:min,borderColor:'#7fb7ff',tension:0.36,fill:false,pointRadius:2,borderWidth:2}
+      ]},
+      options:{
+        plugins:{legend:{labels:{color:'#fff'}}},
+        scales:{x:{ticks:{color:'#fff'}},y:{ticks:{color:'#fff'}}},
+        elements:{line:{cap:'round'}},
+        interaction:{mode:'index',intersect:false}
+      }
+    });
+  }catch(e){ console.error('Erro loadWeather:',e); }
+}
+
+/* load default cities */
+loadWeather('Gramado','BR','chart-gramado','gramado-temp','gramado-desc','gramado-emoji-row');
+loadWeather('São Paulo','BR','chart-sp','sp-temp','sp-desc','sp-emoji-row');
+loadWeather('Recife','BR','chart-recife','recife-temp','recife-desc','recife-emoji-row');
+loadWeather('Miami','US','chart-miami','miami-temp','miami-desc','miami-emoji-row');
+loadWeather('Santiago','CL','chart-santiago','santiago-temp','santiago-desc','santiago-emoji-row'); // Santiago here
+loadWeather('Lisboa','PT','chart-lisboa','lisboa-temp','lisboa-desc','lisboa-emoji-row');
+
+/* =========================
+   Search city (top)
+   ========================= */
+async function searchCity(){
+  const q = document.getElementById('search').value.trim();
+  if(!q){ document.getElementById('search-result').innerText = 'Digite uma cidade.'; return; }
+  document.getElementById('search-result').innerText = 'Buscando...';
+  try{
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(q)}&limit=1&appid=${API_KEY}`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) { document.getElementById('search-result').innerText = 'Cidade não encontrada.'; return; }
+    const name = geo[0].name + (geo[0].state?(', '+geo[0].state):'') + (geo[0].country?(', '+geo[0].country):'');
+    document.getElementById('search-result').innerHTML = `<strong>${name}</strong> — lat ${geo[0].lat.toFixed(3)}, lon ${geo[0].lon.toFixed(3)}`;
+    if(window.map) map.setView([geo[0].lat,geo[0].lon],6);
+  }catch(e){ console.error(e); document.getElementById('search-result').innerText='Erro na busca.'}
+}
+
+/* =========================
+   Compesa (fake)
+   ========================= */
+function checkCompesa(){
+  const cep = document.getElementById('cep').value.trim();
+  if(!cep){ document.getElementById('compesa-result').innerText='Digite um CEP.'; return; }
+  const dias = ['Segunda','Quarta','Sexta'];
+  const dia = dias[Math.floor(Math.random()*dias.length)];
+  document.getElementById('compesa-result').innerText = `Próximo abastecimento provável: ${dia}-feira (Observação) Pode haver alterações da Compesa / manutenção).`;
+}
+
+/* =========================
+   Leaflet map
+   ========================= */
+const map = L.map('map',{attributionControl:true}).setView([-15, -30],2);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  maxZoom:19, attribution:'© OpenStreetMap contributors'
+}).addTo(map);
+
+// sample markers (centered on SA sample cities)
+const sample = [
+  {lat:-22.90,lon:-43.20,label:'Rio de Janeiro'},
+  {lat:-23.55,lon:-46.63,label:'São Paulo'},
+  {lat:-8.05,lon:-34.9,label:'Recife'},
+  {lat:-8.0,lon:-35.3,label:'Gravata'},
+  {lat:-33.45,lon:-70.66,label:'Santiago'}
+];
+sample.forEach(s=> L.marker([s.lat,s.lon]).addTo(map).bindPopup(`<strong>${s.label}</strong>`));
+window.addEventListener('resize',()=> map.invalidateSize());
+setTimeout(()=> map.invalidateSize(),700);
+
+/* =========================
+   Moon card: SunCalc
+   ========================= */
+function formatAMPM(date){
+  return date.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',hour12:true});
+}
+function moonPhaseName(phase){
+  if(phase===0 || phase===1) return ["Nova","🌑"];
+  if(phase>0 && phase<0.25) return ["Crescente","🌒"];
+  if(Math.abs(phase-0.25)<0.01) return ["Quarto Crescente","🌓"];
+  if(phase>0.25 && phase<0.5) return ["Crescente Gibosa","🌔"];
+  if(Math.abs(phase-0.5)<0.01) return ["Cheia","🌕"];
+  if(phase>0.5 && phase<0.75) return ["Minguante Gibosa","🌖"];
+  if(Math.abs(phase-0.75)<0.01) return ["Quarto Minguante","🌗"];
+  return ["Minguante","🌘"];
+}
+
+function updateMoonFor(lat,lon,label){
+  const now = new Date();
+  const moonTimes = SunCalc.getMoonTimes(now, lat, lon);
+  const illum = SunCalc.getMoonIllumination(now);
+  const [name,emoji] = moonPhaseName(illum.phase);
+  document.getElementById('moon-icon').innerText = emoji;
+  document.getElementById('moon-name').innerText = `${name} • ${label||''}`;
+  document.getElementById('moon-datetime').innerText = now.toLocaleDateString('pt-BR') + ' • ' + now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  const rise = moonTimes.rise ? formatAMPM(moonTimes.rise) : '—';
+  const setT = moonTimes.set ? formatAMPM(moonTimes.set) : '—';
+  document.getElementById('moon-rise-set').innerText = `Nascer: ${rise} | Pôr: ${setT}`;
+  const phrases = {
+    "Cheia":"O teu brilho me torna inteira; olho pra ti e me encho de luz.",
+    "Quarto Crescente":"Cada passo teu acende em mim uma nova esperança.",
+    "Crescente":"Cresço por ti, como a lua que aprende a ser estrela.",
+    "Minguante":"Mesmo diminuindo, guardo tudo o que me deste; há beleza em cada lembrança.",
+    "Quarto Minguante":"O silêncio entre nós fala mais que qualquer palavra.",
+    "Nova":"Em silêncio eu me preparo para voltar a te iluminar."
+  };
+  const base = phrases[name] || "Meu amor te acompanha em cada noite e em cada suspiro.";
+  document.getElementById('moon-phrase').innerText = base;
+  // optionally center map to lat/lon
+  if(window.map) map.setView([lat,lon],5);
+}
+
+// default moon card to Gravata approx coords
+updateMoonFor(-8.0,-35.3,"Gravata, BR");
+
+async function searchMoonCity(){
+  const q = document.getElementById('moon-search').value.trim();
+  if(!q) return alert('Digite cidade (ex: Gravata, BR)');
+  try{
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(q)}&limit=1&appid=${API_KEY}`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) return alert('Local não encontrado.');
+    updateMoonFor(geo[0].lat, geo[0].lon, geo[0].name + (geo[0].country?(', '+geo[0].country):''));
+  }catch(e){ console.error(e); alert('Erro ao buscar cidade.') }
+}
+
+/* =========================
+   Audio player (local file expected near site)
+   ========================= */
+const audioToggleBtn = document.getElementById('audio-toggle');
+const audioTrackName = document.getElementById('audio-track-name');
+let audio = new Audio();
+audio.src = 'lua_vozinha.wav'; // place this file beside index.html or set a URL
+let playing=false;
+audioToggleBtn.addEventListener('click', ()=>{
+  if(!playing){ audio.play().catch(()=>alert("Não foi possível tocar o áudio local. Coloque 'lua_vozinha.wav' ao lado do site ou edite audio.src")); audioToggleBtn.innerText='⏸'; playing=true }
+  else { audio.pause(); audioToggleBtn.innerText='▶'; playing=false }
+});
+audio.addEventListener('error', ()=>{ audioTrackName.innerText = "arquivo: lua_vozinha.wav (não encontrado)"; });
+
+/* =========================
+   UX tweaks: map resizing
+   ========================= */
+map.on('load', ()=> map.invalidateSize());
+setTimeout(()=> map.invalidateSize(), 800);
+
+</script>
+
+<audio autoplay loop>
+  <source src="assets/musica.mp3" type="audio/mpeg">
+</audio>
+</div> <!-- wrap -->
+
+</body>
+</html>

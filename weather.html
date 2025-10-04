@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>𝕮𝖔𝖑𝖎𝖓𝖆 𝖂𝖊𝖆𝖙𝖍𝖊𝖗🌡️</title>
+
+<!-- Fonts & libraries -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/suncalc@1.9.0/suncalc.js"></script>
+<script type="importmap">
+  {
+    "imports": {
+      "@google/genai": "https://esm.sh/@google/genai@^0.7.0"
+    }
+  }
+</script>
+
+<style>
+  :root{
+    --bg1:#020218; --bg2:#07132a; --bg3:#001a36;
+    --card-bg: rgba(10,14,20,0.9);
+    --neon1:#cf8bf3; --neon2:#00f3ff; --accent:#a770ef; --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;font-family:"Cinzel",serif;background:#000;color:#eaf6ff;overflow-x:hidden}
+
+  /* Galactic animated background */
+  body::before{
+    content:"";
+    position:fixed;inset:0;z-index:-4;
+    background:
+      radial-gradient(600px 300px at 10% 20%, rgba(255,120,200,0.06), transparent 10%),
+      radial-gradient(800px 400px at 80% 70%, rgba(0,200,255,0.04), transparent 12%),
+      linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
+    background-size:300% 300%;
+    animation:bgMove 28s linear infinite;
+    filter:blur(6px) saturate(120%);
+  }
+  @keyframes bgMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+  /* twinkling stars */
+  .stars{position:fixed;inset:0;pointer-events:none;z-index:-3}
+  .star{position:absolute;border-radius:50%;background:rgba(255,255,255,0.9);box-shadow:0 0 6px rgba(255,255,255,0.08);opacity:.8;animation:twinkle 3s linear infinite}
+  @keyframes twinkle{0%{opacity:.15}50%{opacity:1}100%{opacity:.15}}
+
+  header{
+    position:sticky;top:0;background:linear-gradient(90deg,rgba(3,6,12,0.8),rgba(5,8,20,0.6));
+    padding:18px;text-align:center;font-family:"Orbitron",sans-serif;font-size:20px;color:#fff;text-shadow:0 0 12px var(--neon1),0 0 20px var(--neon2);
+    z-index:50;border-bottom:1px solid rgba(255,255,255,0.03);
+  }
+
+  .wrap{max-width:1400px;margin:28px auto;padding:0 16px 140px}
+
+  /* Grid for cards */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:22px}
+  .grid.grid-4-cols { grid-template-columns: repeat(4, 1fr); }
+
+  .utility-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    margin-bottom: 22px;
+  }
+
+  @media(max-width:1200px){
+    .grid.grid-4-cols { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:700px){
+    .grid, .grid.grid-4-cols {grid-template-columns:1fr}
+  }
+
+
+  .neon-card {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 0 10px rgba(0,255,255,0.6), 0 0 20px rgba(0,200,255,0.4), 0 0 30px rgba(255,255,255,0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .neon-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0,255,255,0.8), 0 0 30px rgba(0,200,255,0.6), 0 0 40px rgba(255,255,255,0.4);
+  }
+
+  h3{font-family:"Orbitron",sans-serif;color:#fff;margin-bottom:6px;text-shadow:0 0 8px var(--neon1),0 0 16px var(--neon2); color: rgb(0,255,255); }
+
+  .emoji-row{font-size:20px;margin:8px 0;display:flex;gap:8px;align-items:center;justify-content:center}
+  .emoji-big{font-size:64px;margin:6px 0}
+  .info{margin:6px 0;font-size:15px; font-weight: bold; color: #0ff; text-shadow: 0 0 3px #0ff, 0 0 6px #0cc, 0 0 9px #0ff;}
+  .muted{opacity:0.9;font-size:13px;color:#cfe8ff}
+
+  canvas{width:100% !important;height:160px !important;max-height:220px}
+
+  .center-block{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;width:100%; flex-grow: 1;}
+  .center-block input, .center-block select {width:88%;max-width:520px;border-radius:12px;padding:12px;margin:8px 0;border:none;background:var(--glass);color:#fff;text-align:center;outline:none;font-size:15px;box-shadow:0 0 18px rgba(167,112,239,0.06)}
+  .center-block button{cursor:pointer;background:linear-gradient(90deg,var(--accent),var(--neon2));padding:12px 26px;border-radius:14px;border:none;color:#001;font-weight:700;box-shadow:0 0 36px rgba(0,243,255,0.12)}
+  .center-block input::placeholder { color: #aaa; }
+  .center-block .file-input-wrapper { position: relative; overflow: hidden; display: inline-block; cursor: pointer; }
+  .center-block .file-input-wrapper input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; }
+  .center-block .file-input-button { background: linear-gradient(90deg,var(--accent),var(--neon2)); padding: 12px 26px; border-radius: 14px; color: #001; font-weight: 700; cursor: pointer; display: inline-block; }
+
+
+  .neon-title{font-family:"Orbitron",sans-serif;color:transparent;-webkit-text-stroke:1px rgba(200,150,255,0.95);text-shadow:0 0 6px rgba(200,150,255,0.12),0 0 14px rgba(167,112,239,0.28)}
+
+  #map{height:420px;border-radius:12px;width:100%}
+
+  .grid-finance {
+    display:grid; grid-template-columns:repeat(5,1fr); gap:20px; margin-top:26px
+  }
+  @media(max-width:1200px){ .grid-finance{grid-template-columns:repeat(3,1fr)} }
+  @media(max-width:900px){ .grid-finance{grid-template-columns:repeat(2,1fr)} }
+  @media(max-width:700px){
+    .grid-finance{grid-template-columns:1fr}
+    #map{height:260px}
+  }
+
+  .bottom-section { display:grid; grid-template-columns: repeat(2, 1fr); gap:22px; margin-bottom: 22px; }
+  @media(max-width:1000px){ .bottom-section{grid-template-columns:1fr} }
+
+  .news-list{flex:1;overflow:auto;padding-right:8px}
+  .news-item{padding:10px;border-radius:8px;background:rgba(255,255,255,0.01);margin-bottom:8px;text-align:left}
+  .news-item a{color:#fff;text-decoration:none;font-weight:700}
+  .news-item p{color:#dfe8ff;font-size:13px;margin-top:6px}
+
+  @keyframes pulseNeonText {
+    from { text-shadow: 0 0 6px rgb(0,255,255), 0 0 12px rgb(0,200,255); }
+    to   { text-shadow: 0 0 12px rgb(0,255,255), 0 0 24px rgb(0,200,255), 0 0 36px white; }
+  }
+
+  footer {
+    padding:10px 12px; text-align:center; color:#fff; font-size:14px;
+  }
+  .small-muted{font-size:12px;color:#cfe8ff;opacity:0.9}
+
+  /* Chat styles */
+  .chat-history {
+    height: 180px;
+    width: 100%;
+    overflow-y: auto;
+    border: 1px solid var(--glass);
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .chat-message {
+    padding: 8px;
+    border-radius: 6px;
+    max-width: 85%;
+    word-wrap: break-word;
+  }
+  .user-message {
+    background: var(--accent);
+    color: #fff;
+    margin-left: auto;
+    align-self: flex-end;
+  }
+  .ai-message {
+    background: #333;
+    color: #eaf6ff;
+    margin-right: auto;
+    align-self: flex-start;
+  }
+  .thinking-message {
+    color: var(--neon2);
+    font-style: italic;
+    align-self: flex-start;
+  }
+  #image-phrase-preview {
+    max-width: 100%;
+    max-height: 150px;
+    border-radius: 8px;
+    margin-top: 10px;
+    display: none; /* Hidden by default */
+  }
+
+  /* AQI List Styles */
+  .aqi-list { list-style-type: none; padding: 0; margin-top: 10px; text-align: left; }
+  .aqi-list li { display: flex; justify-content: space-between; padding: 4px 0; }
+  .aqi-list .aqi-level { font-weight: bold; }
+  .aqi-level.good { color: #4caf50; }
+  .aqi-level.fair { color: #a8b83a; }
+  .aqi-level.moderate { color: #ffeb3b; }
+  .aqi-level.poor { color: #ff9800; }
+  .aqi-level.very-poor { color: #f44336; }
+</style>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <header>🌡️ 𝕮𝖔𝖑𝖎𝖓𝖆 𝖂𝖊𝖆𝖙𝖍𝖊𝖗 - 𝕽𝖊𝖆𝖑 𝕿𝖎𝖒𝖊 🌡️</header>
+
+  <div class="wrap">
+    <!-- Top row - forecast cards -->
+    <div class="grid grid-4-cols">
+      <div class="neon-card">
+        <h3>🌞 Previsão Gramado</h3>
+        <div class="emoji-row" id="gramado-emoji-row"> </div>
+        <div class="info" id="gramado-temp">--°C</div>
+        <div class="muted" id="gramado-desc">Carregando...</div>
+        <canvas id="chart-gramado"></canvas>
+      </div>
+
+      <div class="neon-card">
+        <h3>🌞 Previsão São Paulo</h3>
+        <div class="emoji-row" id="sp-emoji-row"> </div>
+        <div class="info" id="sp-temp">--°C</div>
+        <div class="muted" id="sp-desc">Carregando...</div>
+        <canvas id="chart-sp"></canvas>
+      </div>
+
+      <div class="neon-card">
+        <h3>🌞 Previsão Recife</h3>
+        <div class="emoji-row" id="recife-emoji-row"> </div>
+        <div class="info" id="recife-temp">--°C</div>
+        <div class="muted" id="recife-desc">Carregando...</div>
+        <canvas id="chart-recife"></canvas>
+      </div>
+      
+      <div class="neon-card">
+        <h3>🌞 Previsão Salvador</h3>
+        <div class="emoji-row" id="salvador-emoji-row"> </div>
+        <div class="info" id="salvador-temp">--°C</div>
+        <div class="muted" id="salvador-desc">Carregando...</div>
+        <canvas id="chart-salvador"></canvas>
+      </div>
+    </div>
+
+    <!-- Second row (International) -->
+    <div class="grid grid-4-cols">
+      <div class="neon-card">
+        <h3>🌞 Previsão Miami (USA)</h3>
+        <div class="emoji-row" id="miami-emoji-row"> 🌪️</div>
+        <div class="info" id="miami-temp">--°C</div>
+        <div class="muted" id="miami-desc">Carregando...</div>
+        <canvas id="chart-miami"></canvas>
+      </div>
+
+      <div class="neon-card">
+        <h3 style="text-align:center">🌞 Previsão Santiago (CL)</h3>
+        <div class="emoji-row" id="santiago-emoji-row"> </div>
+        <div class="info" id="santiago-temp">--°C</div>
+        <div class="muted" id="santiago-desc">Carregando...</div>
+        <canvas id="chart-santiago"></canvas>
+      </div>
+
+      <div class="neon-card">
+        <h3>🌞 Previsão Lisboa (PT)</h3>
+        <div class="emoji-row" id="lisboa-emoji-row"> </div>
+        <div class="info" id="lisboa-temp">--°C</div>
+        <div class="muted" id="lisboa-desc">Carregando...</div>
+        <canvas id="chart-lisboa"></canvas>
+      </div>
+
+      <div class="neon-card">
+        <h3>🌞 Previsão Atenas (GR)</h3>
+        <div class="emoji-row" id="athens-emoji-row"> </div>
+        <div class="info" id="athens-temp">--°C</div>
+        <div class="muted" id="athens-desc">Carregando...</div>
+        <canvas id="chart-athens"></canvas>
+      </div>
+    </div>
+    
+    <!-- Third Row (More International) -->
+    <div class="grid grid-4-cols">
+        <div class="neon-card">
+            <h3>🌞 Previsão Tóquio (JP)</h3>
+            <div class="emoji-row" id="tokyo-emoji-row"> </div>
+            <div class="info" id="tokyo-temp">--°C</div>
+            <div class="muted" id="tokyo-desc">Carregando...</div>
+            <canvas id="chart-tokyo"></canvas>
+        </div>
+        <div class="neon-card">
+            <h3>🌞 Previsão Londres (UK)</h3>
+            <div class="emoji-row" id="london-emoji-row"> </div>
+            <div class="info" id="london-temp">--°C</div>
+            <div class="muted" id="london-desc">Carregando...</div>
+            <canvas id="chart-london"></canvas>
+        </div>
+        <div class="neon-card">
+            <h3>🌞 Previsão Sydney (AU)</h3>
+            <div class="emoji-row" id="sydney-emoji-row"> </div>
+            <div class="info" id="sydney-temp">--°C</div>
+            <div class="muted" id="sydney-desc">Carregando...</div>
+            <canvas id="chart-sydney"></canvas>
+        </div>
+        <div class="neon-card">
+            <h3>🌞 Previsão Cairo (EG)</h3>
+            <div class="emoji-row" id="cairo-emoji-row"> </div>
+            <div class="info" id="cairo-temp">--°C</div>
+            <div class="muted" id="cairo-desc">Carregando...</div>
+            <canvas id="chart-cairo"></canvas>
+        </div>
+    </div>
+
+
+    <div class="utility-grid">
+        <div class="neon-card">
+            <div class="center-block">
+                <h3>🔎 Pesquisar Previsão</h3>
+                <input id="search" placeholder="Cidade, País (ex: Recife, BR)">
+                <button id="search-btn">Buscar</button>
+                <div id="search-result" class="small-muted" style="margin-top:10px"></div>
+            </div>
+        </div>
+        <div class="neon-card">
+            <div class="center-block">
+                <h3>💧 Compesa — Consulta por CEP</h3>
+                <input id="cep" placeholder="Digite o CEP (ex: 55644-000)">
+                <button id="compesa-btn">Consultar</button>
+                <div id="compesa-result" class="small-muted" style="margin-top:10px"></div>
+            </div>
+        </div>
+        <div class="neon-card">
+            <div class="center-block">
+                <h3>🤖 Chat Gemini</h3>
+                <div class="chat-history" id="gemini-chat-history"></div>
+                <input id="gemini-chat-input" placeholder="Digite sua mensagem...">
+                <button id="gemini-chat-btn">Enviar</button>
+            </div>
+        </div>
+        <div class="neon-card">
+            <div class="center-block">
+                <h3>🌐 Pesquisar no Google</h3>
+                <input id="google-search-input" placeholder="O que você procura?">
+                <button id="google-search-btn">Buscar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-4-cols">
+      <div class="neon-card">
+          <div class="center-block">
+              <h3>🎵 Pesquisar Música</h3>
+              <input id="yt-music-search" placeholder="Nome da música ou artista">
+              <button id="yt-music-search-btn">Buscar no YouTube</button>
+          </div>
+      </div>
+      <div class="neon-card">
+          <div class="center-block">
+              <h3>🎬 Pesquisar Vídeo</h3>
+              <input id="yt-video-search" placeholder="Termo de busca do vídeo">
+              <button id="yt-video-search-btn">Buscar no YouTube</button>
+          </div>
+      </div>
+      <div class="neon-card">
+          <div class="center-block">
+              <h3>📥 Baixar Música (Simulado)</h3>
+              <input id="yt-download-search" placeholder="Link ou nome do vídeo">
+              <button id="yt-download-btn">Download</button>
+              <div class="small-muted" style="margin-top:10px">Recurso indisponível.</div>
+          </div>
+      </div>
+      <div class="neon-card">
+          <div class="center-block">
+              <h3>🎬 Baixar Vídeo (Simulado)</h3>
+              <input id="yt-video-download-search" placeholder="Link ou nome do vídeo">
+              <button id="yt-video-download-btn">Download</button>
+              <div class="small-muted" style="margin-top:10px">Use serviços oficiais.</div>
+          </div>
+      </div>
+    </div>
+
+    <!-- Moon card -->
+    <div class="neon-card" style="margin-bottom: 22px;">
+      <div class="center-block">
+        <h3>🌙 Fase da Lua — Buscador</h3>
+        <div class="emoji-big" id="moon-icon">🌑</div>
+        <div class="info" id="moon-name">Carregando...</div>
+        <div class="muted" id="moon-datetime">--/--/---- • --:--</div>
+        <div class="muted" id="moon-rise-set">Nascer: -- | Pôr: --</div>
+        <p class="muted" id="moon-phrase" style="margin-top:10px">Frase romântica será exibida aqui.</p>
+        <input id="moon-search" placeholder="Buscar cidade para Lua (ex: Recife, BR)">
+        <button id="moon-search-btn">Buscar Lua</button>
+        <div style="height:8px"></div>
+        <div class="small-muted">A frase romântica muda conforme a fase lunar.</div>
+      </div>
+    </div>
+    
+    <div class="grid grid-4-cols">
+        <div class="neon-card">
+            <div class="center-block">
+                <h3>💱 Conversor de Moedas</h3>
+                <input id="currency-amount" type="number" placeholder="100.00">
+                <select id="currency-from">
+                    <option value="BRL">BRL (Real)</option>
+                    <option value="USD">USD (Dólar)</option>
+                    <option value="EUR">EUR (Euro)</option>
+                    <option value="JPY">JPY (Iene)</option>
+                </select>
+                <select id="currency-to">
+                    <option value="USD">USD (Dólar)</option>
+                    <option value="BRL">BRL (Real)</option>
+                    <option value="EUR">EUR (Euro)</option>
+                    <option value="JPY">JPY (Iene)</option>
+                </select>
+                <button id="currency-convert-btn">Converter</button>
+                <div id="currency-result" class="info" style="margin-top:10px">-</div>
+                <div class="small-muted">Taxas de conversão são ilustrativas.</div>
+            </div>
+        </div>
+        <div class="neon-card">
+            <div class="center-block">
+                <h3>🔭 Observar Estrelas</h3>
+                <div id="stargazing-rating" class="info" style="font-size: 24px;">-</div>
+                <div id="stargazing-details" class="muted">Buscando dados...</div>
+                <div style="margin-top: 10px;">
+                    <p class="small-muted">Nuvens: <span id="stargazing-clouds">-</span></p>
+                    <p class="small-muted">Lua: <span id="stargazing-moon">-</span></p>
+                </div>
+                 <div class="small-muted" style="margin-top: 10px;">Visibilidade baseada em nuvens e brilho lunar.</div>
+            </div>
+        </div>
+        <div class="neon-card">
+            <div class="center-block">
+                <h3>🖼️ Imagem para Frase (AI)</h3>
+                <p class="small-muted">Envie uma imagem e a IA criará uma frase poética sobre ela.</p>
+                <div class="file-input-wrapper">
+                    <span class="file-input-button">Escolher Imagem</span>
+                    <input type="file" id="image-phrase-input" accept="image/*">
+                </div>
+                <img id="image-phrase-preview" src="" alt="Prévia da imagem">
+                <div id="image-phrase-result" class="info" style="margin-top:10px; text-align:center;"></div>
+            </div>
+        </div>
+        <div class="neon-card">
+            <div class="center-block">
+                <h3>#️⃣ Hashtags em Alta</h3>
+                <p class="small-muted" style="flex-grow: 0;">Pesquise por tópicos ou veja as tendências.</p>
+                <input id="hashtag-search-input" placeholder="Ex: tecnologia, games">
+                <button id="hashtag-search-btn">Buscar Tendências</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="bottom-section">
+      <!-- Card Mapa-Múndi -->
+      <div class="neon-card" style="height:420px;">
+        <h3>🌍 Mapa-Múndi</h3>
+        <div id="map" style="height:100%; border-radius:12px;"></div>
+      </div>
+      <!-- Card Notícias -->
+      <div class="neon-card" style="display:flex; flex-direction:column; height:420px;">
+        <h3>📰 Notícias do Mundo</h3>
+        <div class="news-list" id="news-list">
+          <div class="news-item"><a href="#">Economia: Mercados globais em movimento</a><p>Principais bolsas reagiram às novas estimativas.</p></div>
+          <div class="news-item"><a href="#">Tecnologia: Novas GPUs</a><p>Fabricantes anunciam chips voltados a IA.</p></div>
+          <div class="news-item"><a href="#">Clima: Alertas para áreas costeiras</a><p>Tempestades isoladas previstas.</p></div>
+          <div class="news-item"><a href="#">Política: Cúpula internacional</a><p>Líderes trataram de energia, comércio e segurança.</p></div>
+        </div>
+        <div class="small-muted">Fontes: exemplos estáticos.</div>
+      </div>
+    </div>
+
+    <!-- Finance cards -->
+    <div class="grid-finance" id="finance-grid" aria-live="polite">
+      <div class="neon-card"><h3>Intel</h3><div class="info">INTC • US$ 34.52</div><div class="info" style="color: #4caf50;">+1.25%</div></div>
+      <div class="neon-card"><h3>Nvidia</h3><div class="info">NVDA • US$ 462.18</div><div class="info" style="color: #4caf50;">+2.84%</div></div>
+      <div class="neon-card"><h3>Amazon</h3><div class="info">AMZN • US$ 134.11</div><div class="info" style="color: #4caf50;">+0.56%</div></div>
+      <div class="neon-card"><h3>Apple</h3><div class="info">AAPL • US$ 182.65</div><div class="info" style="color: #f44336;">-0.22%</div></div>
+      <div class="neon-card"><h3>Microsoft</h3><div class="info">MSFT • US$ 332.89</div><div class="info" style="color: #4caf50;">+0.74%</div></div>
+      <div class="neon-card"><h3>Nasdaq</h3><div class="info">NDX • 15,250 pts</div><div class="info" style="color: #4caf50;">+0.45%</div></div>
+      <div class="neon-card"><h3>Dólar</h3><div class="info">USD/BRL • R$ 4.97</div><div class="info" style="color: #4caf50;">+0.15%</div></div>
+      <div class="neon-card"><h3>Ouro</h3><div class="info">GOLD • US$ 1,927.50</div><div class="info" style="color: #f44336;">-0.18%</div></div>
+      <div class="neon-card"><h3>T-Mobile</h3><div class="info">TMUS • US$ 139.25</div><div class="info" style="color: #4caf50;">+0.92%</div></div>
+      <div class="neon-card"><h3>Bitcoin</h3><div class="info">BTC • US$ 26,542</div><div class="info" style="color: #4caf50;">+4.21%</div></div>
+    </div>
+
+    <!-- Air Quality Card (Moved) -->
+    <div class="neon-card" style="display:flex; flex-direction:column; height:420px; margin-top: 22px;">
+      <h3>💨 Qualidade do Ar (AQI)</h3>
+      <ul class="aqi-list" id="aqi-list">
+        <li>Carregando...</li>
+      </ul>
+      <div class="small-muted">Índice de Qualidade do Ar: 1-Bom, 5-Ruim.</div>
+    </div>
+
+
+    <!-- Footer -->
+    <div style="background: rgba(0, 0, 0, 0.6); padding: 10px 20px; border-radius: 10px; box-shadow: 0 0 15px rgba(0,255,255,0.5); display: block; margin-top: 22px; text-align: center;">
+      <a href="#" style="display:block; font-weight:700; font-size:18px; color:rgb(0,255,255); text-shadow:0 0 8px rgb(0,255,255), 0 0 16px rgb(0,200,255), 0 0 24px rgb(255,255,255); animation:pulseNeonText 2s infinite alternate; text-decoration:none; margin-bottom: 8px;">
+        Obrigado, volte sempre.
+            </a>
+      <footer style="position: static; background: none; text-shadow:0 0 8px #0ff,0 0 16px #00f3ff;">
+        🌌 Desenvolvido por ᴍᴀɢ𐓷ᴇ┍ᴏ 𓂀 - © 2025
+      </footer>
+    </div>
+  </div>
+
+<script type="module">
+import { GoogleGenAI } from '@google/genai';
+
+/* =========================
+   API Keys
+   ========================= */
+const WEATHER_API_KEY = "582c1a981cd2720482ca8a74be18cd98";
+
+// ========================================================================
+// ATENÇÃO: Cole sua Chave da API Gemini aqui para testes locais.
+// NUNCA compartilhe este arquivo com a chave publicamente (ex: no GitHub).
+// ========================================================================
+const GEMINI_API_KEY = "SUA_CHAVE_DA_API_GEMINI_AQUI"; // <-- COLE SUA CHAVE AQUI
+
+/* =========================
+   Stars generator
+   ========================= */
+const stars = document.getElementById('stars');
+if (stars) {
+    for (let i=0;i<220;i++){
+      const s = document.createElement('div');
+      s.className='star';
+      const size = 1 + Math.random()*3;
+      s.style.width = s.style.height = size + 'px';
+      s.style.left = (Math.random()*100) + '%';
+      s.style.top = (Math.random()*100) + '%';
+      s.style.animationDuration = (1.2 + Math.random()*4) + 's';
+      s.style.opacity = 0.3 + Math.random()*0.9;
+      stars.appendChild(s);
+    }
+}
+
+/* =========================
+   Weather emoji helper
+   ========================= */
+function getWeatherEmoji(desc, temp){
+  desc = (desc||'').toLowerCase();
+  if(desc.includes('clear') || desc.includes('limpo') || desc.includes('sun')) return temp>30 ? '☀️ 🔥' : '☀️';
+  if(desc.includes('cloud') || desc.includes('nublado') || desc.includes('nuvem')) return temp<10 ? '☁️ 🥶' : '☁️';
+  if(desc.includes('rain') || desc.includes('chuva')) return '🌧️';
+  if(desc.includes('snow') || desc.includes('neve')) return '❄️';
+  if(desc.includes('thunder') || desc.includes('trovoada')) return '🌩️';
+  return '🌡️';
+}
+
+/* =========================
+   Load weather + charts
+   ========================= */
+async function loadWeather(city,country,chartId,tempId,descId,emojiRowId){
+  try {
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city + (country?','+country:''))}&limit=1&appid=${WEATHER_API_KEY}`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) {
+      document.getElementById(tempId).innerText = city + ': não encontrado';
+      return;
+    }
+    const {lat,lon,name} = geo[0];
+    const wRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric&lang=pt_br`);
+    const w = await wRes.json();
+    if(!w || !w.list) return;
+    const now = w.list[0];
+    const temp = now.main.temp;
+    document.getElementById(tempId).innerText = `${name}: ${temp.toFixed(1)}°C`;
+    document.getElementById(descId).innerText = now.weather[0].description;
+    document.getElementById(emojiRowId).innerText = getWeatherEmoji(now.weather[0].description,temp);
+
+    const slice = w.list.slice(0,7);
+    const labels = slice.map((d,i)=> i===0 ? 'Agora' : new Date(d.dt*1000).toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'}));
+    const data = slice.map(d=>d.main.temp);
+    const ctx = document.getElementById(chartId).getContext('2d');
+    if(ctx._chart) ctx._chart.destroy();
+
+    const gradient = ctx.createLinearGradient(0,0,0,160);
+    gradient.addColorStop(0,'rgba(167,112,239,0.35)');
+    gradient.addColorStop(1,'rgba(0,243,255,0.04)');
+
+    ctx._chart = new Chart(ctx,{
+      type:'line',
+      data:{labels,datasets:[
+        {label:'Temp',data,borderColor: 'rgba(0, 243, 255, 0.8)',backgroundColor:gradient,tension:0.36,fill:true,pointRadius:3,borderWidth:2},
+      ]},
+      options:{
+        plugins:{legend:{display: false}},
+        scales:{x:{ticks:{color:'#fff'}},y:{ticks:{color:'#fff'}}},
+        elements:{line:{cap:'round'}},
+        interaction:{mode:'index',intersect:false}
+      }
+    });
+  }catch(e){ console.error('Erro loadWeather:',e); }
+}
+
+/* load default cities */
+loadWeather('Gramado','BR','chart-gramado','gramado-temp','gramado-desc','gramado-emoji-row');
+loadWeather('São Paulo','BR','chart-sp','sp-temp','sp-desc','sp-emoji-row');
+loadWeather('Recife','BR','chart-recife','recife-temp','recife-desc','recife-emoji-row');
+loadWeather('Salvador','BR','chart-salvador','salvador-temp','salvador-desc','salvador-emoji-row');
+loadWeather('Miami','US','chart-miami','miami-temp','miami-desc','miami-emoji-row');
+loadWeather('Santiago','CL','chart-santiago','santiago-temp','santiago-desc','santiago-emoji-row');
+loadWeather('Lisboa','PT','chart-lisboa','lisboa-temp','lisboa-desc','lisboa-emoji-row');
+loadWeather('Athens','GR','chart-athens','athens-temp','athens-desc','athens-emoji-row');
+loadWeather('Tokyo','JP','chart-tokyo','tokyo-temp','tokyo-desc','tokyo-emoji-row');
+loadWeather('London','GB','chart-london','london-temp','london-desc','london-emoji-row');
+loadWeather('Sydney','AU','chart-sydney','sydney-temp','sydney-desc','sydney-emoji-row');
+loadWeather('Cairo','EG','chart-cairo','cairo-temp','cairo-desc','cairo-emoji-row');
+
+
+/* =========================
+   Search city (top)
+   ========================= */
+async function searchCity(){
+  const q = document.getElementById('search').value.trim();
+  const resultEl = document.getElementById('search-result');
+  if(!q){ resultEl.innerText = 'Digite uma cidade.'; return; }
+  resultEl.innerText = 'Buscando...';
+  try{
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(q)}&limit=1&appid=${WEATHER_API_KEY}`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) { resultEl.innerText = 'Cidade não encontrada.'; return; }
+    const name = geo[0].name + (geo[0].state?(', '+geo[0].state):'') + (geo[0].country?(', '+geo[0].country):'');
+    resultEl.innerHTML = `<strong>${name}</strong> — lat ${geo[0].lat.toFixed(3)}, lon ${geo[0].lon.toFixed(3)}`;
+    if(window.map) map.setView([geo[0].lat,geo[0].lon],6);
+    updateStargazing(geo[0].lat, geo[0].lon);
+  }catch(e){ console.error(e); resultEl.innerText='Erro na busca.'}
+}
+document.getElementById('search-btn').addEventListener('click', searchCity);
+
+/* =========================
+   Compesa (fake)
+   ========================= */
+function checkCompesa(){
+  const cep = document.getElementById('cep').value.trim();
+  const resultEl = document.getElementById('compesa-result');
+  if(!cep){ resultEl.innerText='Digite um CEP.'; return; }
+  const dias = ['Segunda','Quarta','Sexta'];
+  const dia = dias[Math.floor(Math.random()*dias.length)];
+  resultEl.innerText = `Próximo abastecimento: ${dia}-feira (Estimativa sujeita a alterações).`;
+}
+document.getElementById('compesa-btn').addEventListener('click', checkCompesa);
+
+
+/* =========================
+   Leaflet map
+   ========================= */
+const map = L.map('map',{attributionControl:true}).setView([-15, -30],2);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+  maxZoom:19, attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+}).addTo(map);
+setTimeout(()=> map.invalidateSize(), 800);
+
+/* =========================
+   Moon card: SunCalc
+   ========================= */
+function formatAMPM(date){
+  return date.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',hour12:true});
+}
+function moonPhaseName(phase){
+  if(phase===0 || phase===1) return ["Nova","🌑"];
+  if(phase>0 && phase<0.25) return ["Crescente","🌒"];
+  if(Math.abs(phase-0.25)<0.01) return ["Quarto Crescente","🌓"];
+  if(phase>0.25 && phase<0.5) return ["Crescente Gibosa","🌔"];
+  if(Math.abs(phase-0.5)<0.01) return ["Cheia","🌕"];
+  if(phase>0.5 && phase<0.75) return ["Minguante Gibosa","🌖"];
+  if(Math.abs(phase-0.75)<0.01) return ["Quarto Minguante","🌗"];
+  return ["Minguante","🌘"];
+}
+
+function updateMoonFor(lat,lon,label){
+  const now = new Date();
+  const moonTimes = SunCalc.getMoonTimes(now, lat, lon);
+  const illum = SunCalc.getMoonIllumination(now);
+  const [name,emoji] = moonPhaseName(illum.phase);
+  document.getElementById('moon-icon').innerText = emoji;
+  document.getElementById('moon-name').innerText = `${name} • ${label||''}`;
+  document.getElementById('moon-datetime').innerText = now.toLocaleDateString('pt-BR') + ' • ' + now.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  const rise = moonTimes.rise ? formatAMPM(moonTimes.rise) : '—';
+  const setT = moonTimes.set ? formatAMPM(moonTimes.set) : '—';
+  document.getElementById('moon-rise-set').innerText = `Nascer: ${rise} | Pôr: ${setT}`;
+  const phrases = {
+    "Cheia":"O teu brilho me torna inteira; olho pra ti e me encho de luz.",
+    "Crescente":"Cada passo teu acende em mim uma nova esperança.",
+    "Minguante":"Mesmo diminuindo, guardo tudo o que me deste; há beleza em cada lembrança.",
+    "Nova":"Em silêncio eu me preparo para voltar a te iluminar."
+  };
+  document.getElementById('moon-phrase').innerText = phrases[name] || "Meu amor te acompanha em cada noite e em cada suspiro.";
+  if(window.map) map.setView([lat,lon],5);
+  updateStargazing(lat, lon); // Sync stargazing card
+}
+
+async function searchMoonCity(){
+  const q = document.getElementById('moon-search').value.trim();
+  if(!q) return;
+  try{
+    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(q)}&limit=1&appid=${WEATHER_API_KEY}`);
+    const geo = await geoRes.json();
+    if(!geo || !geo[0]) return alert('Local não encontrado.');
+    updateMoonFor(geo[0].lat, geo[0].lon, geo[0].name + (geo[0].country?(', '+geo[0].country):''));
+  }catch(e){ console.error(e); alert('Erro ao buscar cidade.') }
+}
+
+updateMoonFor(-8.0,-35.3,"Gravata, BR"); // Default
+document.getElementById('moon-search-btn').addEventListener('click', searchMoonCity);
+
+/* =========================
+   Gemini Chat
+   ========================= */
+const geminiChatHistory = document.getElementById('gemini-chat-history');
+const geminiChatInput = document.getElementById('gemini-chat-input');
+const geminiChatBtn = document.getElementById('gemini-chat-btn');
+let ai, chat;
+
+if (GEMINI_API_KEY && GEMINI_API_KEY !== "SUA_CHAVE_DA_API_GEMINI_AQUI") {
+  ai = new GoogleGenAI({ apiKey: GEMINI_API_KEY });
+  chat = ai.chats.create({ model: 'gemini-2.5-flash' });
+} else {
+  geminiChatHistory.innerHTML = '<div class="ai-message">Chave da API Gemini não configurada. Cole sua chave no arquivo HTML para habilitar.</div>';
+  geminiChatInput.disabled = true;
+  geminiChatBtn.disabled = true;
+}
+
+async function handleGeminiChat() {
+    const userInput = geminiChatInput.value.trim();
+    if (!userInput || !chat) return;
+
+    geminiChatInput.value = '';
+    appendMessage(userInput, 'user');
+    
+    const thinkingMessage = appendMessage('Pensando...', 'thinking');
+
+    try {
+        const response = await chat.sendMessage({ message: userInput });
+        thinkingMessage.remove();
+        appendMessage(response.text, 'ai');
+    } catch (error) {
+        console.error("Gemini Error:", error);
+        thinkingMessage.remove();
+        appendMessage('Desculpe, ocorreu um erro.', 'ai');
+    }
+}
+
+function appendMessage(text, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('chat-message', `${type}-message`);
+    messageDiv.textContent = text;
+    geminiChatHistory.appendChild(messageDiv);
+    geminiChatHistory.scrollTop = geminiChatHistory.scrollHeight;
+    return messageDiv;
+}
+geminiChatBtn.addEventListener('click', handleGeminiChat);
+geminiChatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleGeminiChat(); });
+
+
+/* =========================
+   YouTube & Utilities
+   ========================= */
+document.getElementById('yt-music-search-btn').addEventListener('click', () => {
+    const query = document.getElementById('yt-music-search').value.trim();
+    if(query) window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`, '_blank');
+});
+document.getElementById('yt-video-search-btn').addEventListener('click', () => {
+    const query = document.getElementById('yt-video-search').value.trim();
+    if(query) window.open(`https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`, '_blank');
+});
+document.getElementById('yt-download-btn').addEventListener('click', () => {
+    alert('O download direto de conteúdo do YouTube viola os termos de serviço da plataforma. Utilize serviços de streaming oficiais.');
+});
+document.getElementById('yt-video-download-btn').addEventListener('click', () => {
+    alert('O download direto de conteúdo do YouTube viola os termos de serviço da plataforma. Utilize serviços de streaming oficiais.');
+});
+document.getElementById('google-search-btn').addEventListener('click', () => {
+    const query = document.getElementById('google-search-input').value.trim();
+    if(query) window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+});
+document.getElementById('hashtag-search-btn').addEventListener('click', () => {
+    const query = document.getElementById('hashtag-search-input').value.trim();
+    const searchTerm = query ? query + " trending hashtags" : "trending hashtags";
+    window.open(`https://www.google.com/search?q=${encodeURIComponent(searchTerm)}`, '_blank');
+});
+
+
+/* =========================
+   Currency Converter
+   ========================= */
+const rates = { USD: 1.0, BRL: 5.15, EUR: 0.92, JPY: 157.5 }; // Illustrative rates
+document.getElementById('currency-convert-btn').addEventListener('click', () => {
+    const amount = parseFloat(document.getElementById('currency-amount').value);
+    const from = document.getElementById('currency-from').value;
+    const to = document.getElementById('currency-to').value;
+    const resultEl = document.getElementById('currency-result');
+    if (isNaN(amount)) {
+        resultEl.textContent = 'Valor inválido';
+        return;
+    }
+    const result = (amount / rates[from]) * rates[to];
+    resultEl.textContent = `${result.toLocaleString('pt-BR', {style: 'currency', currency: to})}`;
+});
+
+/* =========================
+   Image to Phrase
+   ========================= */
+const imagePhraseInput = document.getElementById('image-phrase-input');
+const imagePhrasePreview = document.getElementById('image-phrase-preview');
+const imagePhraseResult = document.getElementById('image-phrase-result');
+
+imagePhraseInput.addEventListener('change', async (event) => {
+    const file = event.target.files[0];
+    if (!file || !ai) {
+        if (!ai) imagePhraseResult.textContent = 'A API Gemini não está configurada.';
+        return;
+    }
+
+    imagePhraseResult.textContent = 'Analisando imagem...';
+    
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        const base64Data = e.target.result.split(',')[1];
+        imagePhrasePreview.src = e.target.result;
+        imagePhrasePreview.style.display = 'block';
+
+        const imagePart = {
+            inlineData: {
+                mimeType: file.type,
+                data: base64Data
+            }
+        };
+        const textPart = { text: "Crie uma frase poética ou inspiradora para esta imagem." };
+        
+        try {
+            const response = await ai.models.generateContent({
+                model: 'gemini-2.5-flash',
+                contents: { parts: [imagePart, textPart] }
+            });
+            imagePhraseResult.textContent = response.text;
+        } catch (error) {
+            console.error('Image-to-phrase error:', error);
+            imagePhraseResult.textContent = 'Erro ao gerar frase. Tente outra imagem.';
+        }
+    };
+    reader.readAsDataURL(file);
+});
+
+/* =========================
+   Stargazing Conditions
+   ========================= */
+async function updateStargazing(lat, lon) {
+    try {
+        const wRes = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`);
+        const weather = await wRes.json();
+        const cloudCover = weather.clouds.all; // 0-100%
+
+        const illum = SunCalc.getMoonIllumination(new Date());
+        const moonIllumination = Math.round(illum.fraction * 100); // 0-100%
+
+        document.getElementById('stargazing-clouds').textContent = `${cloudCover}%`;
+        document.getElementById('stargazing-moon').textContent = `${moonIllumination}%`;
+        
+        // Simple score: lower is better
+        const score = cloudCover + moonIllumination;
+        let rating = '';
+        let details = '';
+
+        if (score < 40) {
+            rating = 'Excelente';
+            details = 'Céu limpo e pouca luz da lua.';
+        } else if (score < 80) {
+            rating = 'Bom';
+            details = 'Boas condições, visibilidade parcial.';
+        } else if (score < 130) {
+            rating = 'Razoável';
+            details = 'Nuvens ou lua podem atrapalhar.';
+        } else {
+            rating = 'Ruim';
+            details = 'Céu muito nublado ou lua cheia.';
+        }
+        
+        document.getElementById('stargazing-rating').textContent = rating;
+        document.getElementById('stargazing-details').textContent = details;
+
+    } catch(e) {
+        console.error('Stargazing error:', e);
+        document.getElementById('stargazing-details').textContent = 'Erro ao obter dados.';
+    }
+}
+
+/* =========================
+   Global Air Quality (AQI)
+   ========================= */
+function getAqiDescription(aqi) {
+    switch (aqi) {
+        case 1: return { text: 'Bom', className: 'good' };
+        case 2: return { text: 'Razoável', className: 'fair' };
+        case 3: return { text: 'Moderado', className: 'moderate' };
+        case 4: return { 'text': 'Ruim', className: 'poor' };
+        case 5: return { text: 'Muito Ruim', className: 'very-poor' };
+        default: return { text: 'N/A', className: '' };
+    }
+}
+
+async function loadAirQuality() {
+    const cities = [
+        { name: 'São Paulo', lat: -23.55, lon: -46.63 },
+        { name: 'Pequim', lat: 39.90, lon: 116.40 },
+        { name: 'Nova Deli', lat: 28.61, lon: 77.20 },
+        { name: 'Londres', lat: 51.50, lon: -0.12 }
+    ];
+    const aqiListEl = document.getElementById('aqi-list');
+    aqiListEl.innerHTML = '';
+
+    for (const city of cities) {
+        try {
+            const res = await fetch(`https://api.openweathermap.org/data/2.5/air_pollution?lat=${city.lat}&lon=${city.lon}&appid=${WEATHER_API_KEY}`);
+            const data = await res.json();
+            const aqi = data.list[0].main.aqi;
+            const desc = getAqiDescription(aqi);
+
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${city.name}</span> <span class="aqi-level ${desc.className}">${desc.text}</span>`;
+            aqiListEl.appendChild(li);
+        } catch (e) {
+            console.error(`Failed to load AQI for ${city.name}`, e);
+        }
+    }
+}
+
+loadAirQuality();
+
+</script>
+
+<audio autoplay loop>
+  <source src="/audio/FloyyMenor, Cris MJ - Gata Only.mp3" type="audio/mpeg">
+</audio>
+
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

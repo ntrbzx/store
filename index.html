@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌌 𝕭𝖊𝖒 𝕲𝖆𝖓𝖌𝖘𝖙𝖊𝖗 - 𝕾𝖙𝖔𝖗𝖊 ™ </title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Body e fundo animado */
+body {
+  background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+@keyframes gradientBG {
+  0% {background-position:0% 50%;}
+  50% {background-position:100% 50%;}
+  100% {background-position:0% 50%;}
+}
+
+/* Fundo de circuitos digitais */
+.circuit {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: repeating-linear-gradient(
+    90deg,
+    rgba(0,255,255,0.05) 0px,
+    rgba(0,255,255,0.05) 2px,
+    transparent 2px,
+    transparent 40px
+  ),
+  repeating-linear-gradient(
+    0deg,
+    rgba(0,255,255,0.05) 0px,
+    rgba(0,255,255,0.05) 2px,
+    transparent 2px,
+    transparent 40px
+  );
+  animation: moveCircuit 20s linear infinite;
+  z-index: -1;
+}
+@keyframes moveCircuit {
+  0% {background-position:0 0,0 0;}
+  100% {background-position:40px 40px,40px 40px;}
+}
+
+/* Header fixo e neon */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  border-bottom: 1px solid #0ff;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff, 0 0 20px #0ff;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {text-shadow:0 0 5px #0ff,0 0 10px #0ff;}
+  to {text-shadow:0 0 20px #0ff,0 0 40px #0ff;}
+}
+
+nav a {
+  color: #0ff;
+  margin: 0 15px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+nav a:hover {
+  color: #ff0;
+  text-shadow: 0 0 10px #ff0;
+}
+
+.header-icons {
+  display: flex;
+  gap: 15px;
+}
+.header-icons div {
+  width: 30px;
+  height: 30px;
+  background: #0ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.header-icons div:hover {
+  box-shadow: 0 0 15px #0ff,0 0 25px #0ff inset;
+}
+
+/* Hero section */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: url('https://via.placeholder.com/1920x1080/0ff/000?text=Hero+Futurista') center/cover no-repeat;
+  position: relative;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  top:0; left:0; width:100%; height:100%;
+  background: rgba(255,255,255,0.05);
+  opacity: 0;
+  pointer-events: none;
+  animation: flash 6s infinite;
+}
+@keyframes flash {
+  0%,100%{opacity:0;}
+  5%{opacity:0.6;}
+  10%{opacity:0;}
+}
+
+.hero h1 {
+  font-size: 64px;
+  color: #0ff;
+  text-shadow: 0 0 10px #0ff,0 0 20px #0ff;
+  animation: fadeIn 2s ease-in-out;
+}
+.hero p {
+  font-size: 20px;
+  margin-top: 20px;
+  color: #fff;
+  animation: fadeIn 3s ease-in-out;
+}
+.hero button {
+  margin-top: 30px;
+  padding: 15px 40px;
+  font-size: 18px;
+  color: #000;
+  background: #0ff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  animation: glowBtn 2s infinite alternate;
+}
+.hero button:hover {
+  background: #ff0;
+  box-shadow: 0 0 15px #ff0, 0 0 30px #ff0 inset;
+}
+@keyframes fadeIn {
+  from {opacity:0; transform:translateY(-30px);}
+  to {opacity:1; transform:translateY(0);}
+}
+@keyframes glowBtn {
+  from {box-shadow:0 0 10px #0ff;}
+  to {box-shadow:0 0 25px #0ff,0 0 40px #0ff inset;}
+}
+
+/* Seção de previsão do tempo */
+.weather-section {
+  padding: 100px 20px 50px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.weather-card {
+  background: rgba(0,255,255,0.1);
+  border: 1px solid #0ff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 200px;
+  text-align: center;
+  transition: 0.3s;
+}
+.weather-card:hover {
+  transform: translateY(-10px);
+  box-shadow:0 0 20px #0ff,0 0 30px #0ff inset;
+}
+
+/* Fases da lua */
+.moon-section {
+  padding: 50px 20px;
+  text-align: center;
+}
+.moon-display {
+  font-size: 50px;
+  margin-top: 20px;
+  animation: glow 2s infinite alternate;
+}
+
+/* Loja / Produtos */
+.products-section {
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.product-card {
+  width: 220px;
+  height: 300px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #0ff;
+  border-radius: 15px;
+  overflow: hidden;
+  perspective: 1000px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.product-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.product-card:hover img {
+  transform: scale(1.1);
+}
+.product-card:hover {
+  transform: rotateY(15deg) translateY(-10px);
+  box-shadow:0 0 25px #0ff,0 0 40px #ff0 inset;
+}
+.product-card .info {
+  padding: 10px;
+  text-align: center;
+}
+.product-card .info h3 {color:#0ff;}
+.product-card .info p {color:#fff;}
+
+/* Passagens */
+.flights-section {
+  padding: 50px 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.flight-card {
+  width: 250px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid #0ff;
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  transition: 0.3s;
+}
+.flight-card button {
+  padding: 10px 20px;
+  background:#0ff;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  transition:0.3s;
+}
+.flight-card button:hover {
+  background:#ff0;
+  box-shadow:0 0 15px #ff0,0 0 30px #ff0 inset;
+}
+.flight-card:hover {
+  transform: translateY(-10px);
+  box-shadow:0 0 20px #0ff,0 0 30px #0ff inset;
+}
+
+/* Rodapé */
+footer {
+  background: rgba(0,0,0,0.6);
+  padding: 50px 20px;
+  text-align: center;
+  border-top:1px solid #0ff;
+}
+footer a {
+  color: #0ff;
+  margin: 0 10px;
+  text-decoration: none;
+}
+footer a:hover {
+  color:#ff0;
+  text-shadow:0 0 10px #ff0;
+}
+
+/* Player de áudio */
+#audio-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 12px;
+  padding: 10px 15px;
+  z-index: 1000;
+  box-shadow: 0 0 12px #0ff,0 0 20px #0ff inset;
+  animation: pulseGlow 2.5s infinite alternate;
+}
+#play-pause {
+  background: linear-gradient(90deg,#0ff,#ff0,#0ff);
+  color:#000;
+  border:none;
+  padding:8px 15px;
+  font-weight:bold;
+  border-radius:8px;
+  cursor:pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  text-shadow:0 0 5px #fff;
+}
+#play-pause:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px #0ff,0 0 40px #ff0;
+}
+@keyframes pulseGlow {
+  0%{box-shadow:0 0 10px #0ff;}
+  100%{box-shadow:0 0 20px #ff0;}
+}
+
+/* Responsividade */
+@media(max-width:768px){
+  .hero h1{font-size:40px;}
+  .hero p{font-size:16px;}
+  .product-card{width:150px;height:250px;}
+  .weather-card{width:150px;}
+  .flight-card{width:180px;}
+}
+</style>
+</head>
+<body>
+
+<div class="circuit"></div>
+
+<header>
+  <div class="logo"> 𝕭𝖊𝖒 𝕲𝖆𝖓𝖌𝖘𝖙𝖊𝖗 - 𝕾𝖙𝖔𝖗𝖊 ™ </div>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="weather.html">Clima</a>
+    <a href="investcrypto.html">Investimentos</a>
+    <a href="bemgangster.html">Loja</a>
+  </nav>
+  <div class="header-icons">
+    <div>👤</div>
+    <div>🛒</div>
+    <div>🔔</div>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <h1>𝕭𝖊𝖒 𝖛𝖎𝖓𝖉𝖔 𝕾𝖙𝖔𝖗𝖊 𝕺𝖋𝖎𝖈𝖎𝖆𝖑™</h1>
+  <p>Experiência de compra futurista com neon, animações e interatividade</p>
+<a href="bemgangster.html">
+  <button>Confira as Promoções</button>
+</a>
+</a>
+
+</section>
+
+<section class="weather-section" id="weather">
+  <div class="weather-card">
+    <h3>São Paulo</h3>
+    <img src="https://via.placeholder.com/100x100/0ff/000?text=🌦" alt="São Paulo">
+    <p>25°C - Parcialmente nublado</p>
+  </div>
+  <div class="weather-card">
+    <h3>Recife</h3>
+    <img src="https://via.placeholder.com/100x100/0ff/000?text=☀️" alt="Recife">
+    <p>30°C - Ensolarado</p>
+  </div>
+  <div class="weather-card">
+    <h3>Rio de Janeiro</h3>
+    <img src="https://via.placeholder.com/100x100/0ff/000?text=⛅" alt="Rio">
+    <p>28°C - Nuvens e sol</p>
+  </div>
+</section>
+
+<section class="moon-section" id="moon">
+  <h2>Fase da Lua</h2>
+  <div class="moon-display">🌑🌒🌓🌔🌕🌖🌗🌘</div>
+</section>
+
+<section class="products-section" id="products">
+  <div class="product-card">
+    <img src="https://via.placeholder.com/220x180/0ff/000?text=Roupa+1" alt="Produto 1">
+    <div class="info">
+      <h3>Roupa Futurista</h3>
+      <p>R$199,99</p>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="https://via.placeholder.com/220x180/0ff/000?text=Acessorio+1" alt="Produto 2">
+    <div class="info">
+      <h3>Óculos Neon</h3>
+      <p>R$149,99</p>
+    </div>
+  </div>
+  <div class="product-card">
+    <img src="https://via.placeholder.com/220x180/0ff/000?text=Eletronico+1" alt="Produto 3">
+    <div class="info">
+      <h3>Fone Futurista</h3>
+      <p>R$299,99</p>
+    </div>
+  </div>
+</section>
+
+<section class="flights-section" id="flights">
+  <div class="flight-card">
+    <h3>São Paulo → Nova York</h3>
+    <p>R$2500</p>
+    <button>Comprar</button>
+  </div>
+  <div class="flight-card">
+    <h3>Recife → Lisboa</h3>
+    <p>R$3200</p>
+    <button>Comprar</button>
+  </div>
+  <div class="flight-card">
+    <h3>Rio de Janeiro → Tóquio</h3>
+    <p>R$4000</p>
+    <button>Comprar</button>
+  </div>
+</section>
+<div></div>
+<footer>
+  <p>© 2025 FuturoShop | Todos os direitos reservados</p>
+  <div>
+    <a href="http://127.0.0.1:5500/bemgangster.html">🌐 Site</a>
+    <a href="https://www.instagram.com/nthorxz/">📱 Instagram</a>
+    <a href="https://br.pinterest.com/nthorxz/">📧 Pinterest</a>
+  </div>
+</footer>
+<!-- Player de áudio -->
+<div id="audio-container">
+  <audio id="bg-audio" autoplay loop>
+    <source src="/audio/musicevilgirl.mp3" type="audio/mp3">
+  </audio>
+  <button id="play-pause">🔊 Tocar</button>
+</div>
+
+<script>
+const audio = document.getElementById('bg-audio');
+const button = document.getElementById('play-pause');
+button.addEventListener('click', ()=>{
+  if(audio.paused){
+    audio.play();
+    button.textContent="🔊 Tocar";
+  } else{
+    audio.pause();
+    button.textContent="🔇 Pausado";
+  }
+});
+</script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>𝕭𝖊𝖒 𝕲𝖆𝖓𝖌𝖘𝖙𝖊𝖗 - 𝕾𝖙𝖔𝖗𝖊 ™</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Times New Roman', serif;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background: #000;
+      overflow: hidden;
+    }
+
+    /* Fundo com circuitos digitais */
+    .circuit {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(0, 255, 255, 0.1) 0px,
+        rgba(0, 255, 255, 0.1) 2px,
+        transparent 2px,
+        transparent 40px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 255, 0.1) 0px,
+        rgba(0, 255, 255, 0.1) 2px,
+        transparent 2px,
+        transparent 40px
+      );
+      animation: moveCircuit 10s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes moveCircuit {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 40px 40px, 40px 40px; }
+    }
+
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin: 0;
+      animation: glow 3s infinite alternate;
+    }
+
+    p {
+      font-size: 1.2em;
+      margin: 10px 0 30px 0;
+      animation: glowText 3s infinite alternate;
+    }
+
+    a.button {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 1.2em;
+      color: #fff;
+      background: linear-gradient(90deg, #00ffff, #0066ff);
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      animation: glowButton 2s infinite alternate;
+      transition: transform 0.3s ease;
+    }
+    a.button:hover { transform: scale(1.1); }
+
+    footer {
+      padding: 15px;
+      font-size: 0.9em;
+      animation: glowFooter 3s infinite alternate;
+      z-index: 1;
+    }
+
+    @keyframes glow {
+      0% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff; }
+      100% { text-shadow: 0 0 15px #33ccff, 0 0 30px #00ffff; }
+    }
+    @keyframes glowText {
+      0% { text-shadow: 0 0 5px #ffffff, 0 0 10px #aaaaaa; }
+      100% { text-shadow: 0 0 15px #eeeeee, 0 0 25px #ffffff; }
+    }
+    @keyframes glowButton {
+      0% { box-shadow: 0 0 10px #00ffff, 0 0 20px #0066ff; }
+      100% { box-shadow: 0 0 20px #00ccff, 0 0 40px #00ffff; }
+    }
+    @keyframes glowFooter {
+      0% { text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff; }
+      100% { text-shadow: 0 0 15px #00e6e6, 0 0 30px #00ffff; }
+    }
+       /* Rodapé */
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      padding: 10px;
+      font-size: 14px;
+      background: rgba(0,0,0,0.6);
+      text-shadow: 0 0 5px #9d00ff;
+    }/* 🎶 Player de áudio no canto inferior direito */
+#audio-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+#audio-container audio {
+  width: 200px;
+  opacity: 0.8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #9d00ff;
+}
+      /* ⚡ Raios suaves */
+    .lightning {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(255,255,255,0.2);
+      opacity: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    @keyframes flash {
+      0%, 100% { opacity: 0; }
+      5% { opacity: 0.8; }
+      10% { opacity: 0; }
+    }
+    .flash {
+      animation: flash 6s infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="circuit"></div>
+  <div class="container">
+    <h1>𝕭𝖊𝖒-𝖛𝖎𝖓𝖉𝖔 à 𝕺𝖙𝖊𝖓 - 𝕾𝖙𝖔𝖗𝖊 𝕺𝖋𝖎𝖈𝖎𝖆𝖑™</h1>
+    <p>𝕰𝖓𝖙𝖗𝖊 𝖆𝖘 𝕾𝖔𝖒𝖇𝖗𝖆𝖘 𝕹𝖆𝖘𝖈𝖊 𝖔 𝕰𝖘𝖙𝖎𝖑𝖔 𝖊 𝖆 𝕰𝖑𝖊𝖌𝖆𝖓𝖈𝖆 𝕾𝖔𝖒𝖇𝖗𝖎𝖆.</p>
+    <a href="http://127.0.0.1:5500/bemgangsterstore.html" class="button">Entrar na Loja</a>
+  </div>
+
+<style>
+  #audio-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 12px;
+    padding: 10px 15px;
+    z-index: 1000;
+    box-shadow: 
+      0 0 12px rgba(255, 0, 128, 0.8),
+      0 0 20px rgba(0, 225, 255, 0.7),
+      0 0 40px rgba(255, 140, 0, 0.6);
+    animation: pulseGlow 2.5s infinite alternate;
+  }
+
+  #play-pause {
+    background: linear-gradient(90deg, #ff0080, #ff8c00, #00e1ff, #ff0080);
+    background-size: 300% auto;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'UnifrakturCook', cursive;
+    text-shadow: 0 0 8px #fff, 0 0 12px #ff00ff;
+    box-shadow: 
+      0 0 12px rgba(255, 0, 128, 0.9),
+      0 0 25px rgba(0, 225, 255, 0.8),
+      0 0 35px rgba(255, 140, 0, 0.7);
+    animation: rgbGlow 4s linear infinite, pulseGlow 2.5s infinite alternate;
+    transition: transform 0.25s ease-in-out, box-shadow 0.25s ease-in-out;
+  }
+
+  #play-pause:hover {
+    transform: scale(1.12);
+    box-shadow: 
+      0 0 20px rgba(255, 0, 128, 1),
+      0 0 40px rgba(0, 225, 255, 1),
+      0 0 60px rgba(255, 140, 0, 1);
+  }
+
+  /* Glow pulsante */
+  @keyframes pulseGlow {
+    from { box-shadow: 0 0 10px #ff00de, 0 0 20px #ff0080; }
+    to   { box-shadow: 0 0 20px #00e1ff, 0 0 40px #ff8c00; }
+  }
+
+  /* Gradiente RGB em movimento */
+  @keyframes rgbGlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Rodapé igual estilo neon */
+  footer {
+    margin-top: 30px;
+    text-align: center;
+    padding: 12px;
+    color: #fff;
+    font-family: 'UnifrakturCook', cursive;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #00e1ff, 0 0 15px #ff8c00;
+    font-size: 14px;
+    animation: pulseGlow 3s infinite alternate;
+  }
+</style>
+
+<script>
+  const audio = document.getElementById('bg-audio');
+  const button = document.getElementById('play-pause');
+
+  // começa tocando
+  audio.play();
+
+  button.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      button.textContent = "🔊 Tocar";
+    } else {
+      audio.pause();
+      button.textContent = "🔇 Pausado";
+    }
+  });
+
+  
+</script>
+
+
+
+</body>
+</html>
+
+
+</body>
+</html>
