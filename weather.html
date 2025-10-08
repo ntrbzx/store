@@ -359,7 +359,7 @@
       </div>
       <div class="neon-card">
           <div class="center-block">
-              <h3>📥 Baixar Música (Simulado)</h3>
+              <h3>📥 Baixar Música </h3>
               <input id="yt-download-search" placeholder="Link ou nome do vídeo">
               <button id="yt-download-btn">Download</button>
               <div class="small-muted" style="margin-top:10px">Recurso indisponível.</div>
@@ -367,7 +367,7 @@
       </div>
       <div class="neon-card">
           <div class="center-block">
-              <h3>🎬 Baixar Vídeo (Simulado)</h3>
+              <h3>🎬 Baixar Vídeo</h3>
               <input id="yt-video-download-search" placeholder="Link ou nome do vídeo">
               <button id="yt-video-download-btn">Download</button>
               <div class="small-muted" style="margin-top:10px">Use serviços oficiais.</div>
@@ -932,6 +932,14 @@ loadAirQuality();
 <audio autoplay loop>
   <source src="FloyyMenor - BANSHEE Ft J Balvin (Video Official) - FloyyMenor (youtube).mp3" type="audio/mpeg">
 </audio>
+
+  <!-- Player de áudio -->
+<div id="audio-container">
+  <audio id="bg-audio" autoplay loop>
+    <source src="musica.mp3" type="audio/mp3">
+  </audio>
+  <button id="play-pause">🔊 Tocar</button>
+</div>
 
 <script type="module" src="/index.tsx"></script>
 </body>
